@@ -43,7 +43,8 @@
 					    <div class="col-sm-10">
 					      <input type="text" class="form-control" id="user_id" name="user_id" placeholder="Username" value="{{ $user->user_id }}"/>
 					    </div>
-					  </div>
+                      </div>
+                      <input type="hidden" id="form" name="form" value="username">
 
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
@@ -53,7 +54,7 @@
 					</fieldset>
 				</form>
 
-                {{-- <form action="{{ route('user.updatepass',$user->id) }}" method="post" class="form-horizontal" >
+                <form action="{{ route('user.update',$user->id) }}" method="post" class="form-horizontal" >
                     @csrf
                     {{ method_field('patch') }}
 					<fieldset>
@@ -76,11 +77,13 @@
 					  </div>
 
 					  <div class="form-group">
-					    <label for="confirmpassword" class="col-sm-2 control-label">Confirm Password</label>
+					    <label for="passwordconfirm" class="col-sm-2 control-label">Confirm Password</label>
 					    <div class="col-sm-10">
-					      <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password">
+					      <input type="password" class="form-control" id="passwordconfirm" name="passwordconfirm" placeholder="Confirm Password">
 					    </div>
-					  </div>
+                      </div>
+
+                      <input type="hidden" id="form" name="form" value="password">
 
 					  <div class="form-group">
 					    <div class="col-sm-offset-2 col-sm-10">
@@ -91,7 +94,7 @@
 
 
 					</fieldset>
-				</form> --}}
+				</form>
 
 			</div> <!-- /panel-body -->
 

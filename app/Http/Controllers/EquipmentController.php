@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Categories;
 use App\CategoriesList;
 use App\Equipment;
 use Illuminate\Http\Request;
@@ -39,7 +40,7 @@ class EquipmentController extends Controller
     {
         $request->validate([
             'equipment_code' => 'required',
-            'equipment_image' => 'required |image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'equipment_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // 'equipment_image_64' => '',
             'equipment_name' => 'required',
             'equipment_location' => '',
@@ -79,12 +80,13 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $categories)
     {
-        $equipment1 = Equipment::where('list_id', $id)->first();
-        $equipment = Equipment::where('list_id', $id)->get();
+        $equipment = Equipment::where('list_id', $id)->first();
         $list = CategoriesList::all();
-        return view('admin.equipment', compact('equipment1', 'equipment', 'list'));
+        $list1 = CategoriesList::find($id);
+        $categories = Categories::find($categories);
+        return view('admin.equipment', compact('categories', 'equipment', 'list', 'list1'));
     }
 
     /**

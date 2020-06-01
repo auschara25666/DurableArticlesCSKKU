@@ -72,14 +72,15 @@ class CategoriesListController extends Controller
         // $categorieslist = DB::table('categories_lists')->where('categories_id', $id);
         // $categorieslist1 = CategoriesList::where('categories_id', $id);
         // $categorieslist = CategoriesList::find('categories_id',$id);
-
         $categories1 = Categories::find($id);
+        $categories1 = $categories1->categories_name;
 
-        $categorieslist = CategoriesList::where('categories_id', $id)->get();
+        $categorieslist = CategoriesList::where('categories_id', $id)->first();
+
         $categories = Categories::all();
         // dd($categories1);
         // dd($categorieslist);
-        $categories1 = $categories1->categories_name;
+
 
         return view('admin.categorieslist', compact('categorieslist', 'categories', 'categories1'));
     }

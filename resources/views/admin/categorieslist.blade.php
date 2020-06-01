@@ -13,7 +13,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
 
-                 <h3 style="text-align:center;">{{ $categories1 }}</h3>
+                <h3 style="text-align:center;">{{ $categories1 }}</h3>
                 {{-- <h3 style="text-align:center;">list</h3> --}}
             </div>
             <!-- /panel-heading -->
@@ -43,6 +43,11 @@
                     {{ session()->get('success') }}
                 </div><br />
                 @endif
+                @if(is_null($categorieslist))
+
+                <h2 class="text-center">** ไม่มีข้อมูลรายการครุภัณฑ์ **</h2>
+
+                @else
 
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" id="myTable" align="center">
@@ -56,9 +61,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categorieslist as $categorieslist)
+                            {{-- @foreach ($categorieslist as $list) --}}
                             <tr>
-                                <td><a href="/equipment/{{ $categorieslist->id }}"><label style="Font-weight:normal;font-size:15px;">{{ $categorieslist->list_title }}</label></a></td>
+                                {{-- <td><a
+                                        href="{{ route('equipment.show',[$categorieslist->id,$categorieslist->categories->id]) }}"><label
+                                            style="Font-weight:normal;font-size:15px;">{{ $categorieslist->list_title }}</label></a>
+                                </td> --}}
+                                <td><a href="/equipment/{{ $categorieslist->id }}/{{ $categorieslist->categories->id }}"><label
+                                    style="Font-weight:normal;font-size:15px;">{{ $categorieslist->list_title }}</label></a></td>
+
                                 <td>{{ $categorieslist->list_price_per_unit }}</td>
                                 <td>{{ $categorieslist->list_get }}</td>
                                 <td>{{ $categorieslist->list_fiscalyear }}</td>
@@ -78,8 +89,9 @@
                                             class="glyphicon glyphicon-trash"></i> ลบ</button>
                                 </td>
                             </tr>
-                            @endforeach
+                            {{-- @endforeach --}}
                         </tbody>
+
                     </table>
                     <!-- /table -->
 
@@ -213,8 +225,8 @@
                                 <label class="col-sm-1 control-label">: </label>
                                 <div class="col-sm-8">
                                     <select class="form-control" id="list_fiscalyear" name="list_fiscalyear">
-                                         @for ($i = 2400; $i < 2600; $i++) <option value="{{ $i }}">{{ $i }}</option>
-                                        @endfor
+                                        @for ($i = 2400; $i < 2600; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                            @endfor
                                     </select>
                                 </div>
                             </div> <!-- /form-group-->
@@ -223,11 +235,12 @@
                                 <label for="categories_id" class="col-sm-3 control-label">ประเภทครุภัฑณ์ </label>
                                 <label class="col-sm-1 control-label">: </label>
                                 <div class="col-sm-8">
-                                <select class="form-control" name="categories_id" id="categories_id">
-                                    @foreach ($categories as $categories)
-                                        <option value="{{ $categories->id }}">{{ $categories->categories_code }} : {{ $categories->categories_name }}</option>
-                                    @endforeach
-                                </select>
+                                    <select class="form-control" name="categories_id" id="categories_id">
+                                        @foreach ($categories as $categories)
+                                        <option value="{{ $categories->id }}">{{ $categories->categories_code }} :
+                                            {{ $categories->categories_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -248,14 +261,14 @@
                 </form>
                 <!-- /.form -->
             </div>
-            </div>
-            <!-- /modal-content -->
         </div>
-        <!-- /modal-dailog -->
+        <!-- /modal-content -->
     </div>
-    <!-- /categorieslist brand -->
+    <!-- /modal-dailog -->
+</div>
+<!-- /categorieslist brand -->
 
-    <!-- categories brand -->
+<!-- categories brand -->
 <div class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" role="dialog" id="removeCategorieslistModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -267,49 +280,51 @@
             <form action="{{ route('categorieslist.destroy',$categorieslist->id) }}" method="POST">
                 @csrf
                 {{method_field('delete')}}
-            <div class="modal-body">
-                <p>คุณแน่ใจว่าจะลบ ?</p>
-            </div>
-            <div class="modal-footer removeCategoriesFooter">
-                <button type="button" class="btn btn-default" data-dismiss="modal"> <i
-                        class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
-                <button type="submit" class="btn btn-primary" id="removeCategoriesBtn" data-loading-text="Loading...">
-                    <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
-            </div>
-        </form>
+                <div class="modal-body">
+                    <p>คุณแน่ใจว่าจะลบ ?</p>
+                </div>
+                <div class="modal-footer removeCategoriesFooter">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> <i
+                            class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
+                    <button type="submit" class="btn btn-primary" id="removeCategoriesBtn"
+                        data-loading-text="Loading...">
+                        <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
+                </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- /categories brand -->
+@endif
 
-    <script>
-        $('#editCategorieslistModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var title = button.data('title')
-            var price = button.data('price')
-            var get = button.data('get')
-            var fiscalyear = button.data('fiscalyear')
-            var status = button.data('status')
-            var categories = button.data('categories')
-            var modal = $(this)
+<script>
+    $('#editCategorieslistModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var id = button.data('id')
+        var title = button.data('title')
+        var price = button.data('price')
+        var get = button.data('get')
+        var fiscalyear = button.data('fiscalyear')
+        var status = button.data('status')
+        var categories = button.data('categories')
+        var modal = $(this)
 
-            modal.find('.modal-body #id').val(id);
-            modal.find('.modal-body #list_title').val(title);
-            modal.find('.modal-body #list_price_per_unit').val(price);
-            modal.find('.modal-body #list_get').val(get);
-            modal.find('.modal-body #list_fiscalyear').val(fiscalyear);
-            modal.find('.modal-body #categories_id').val(categories);
-            modal.find('.modal-body #list_status').val(status);
+        modal.find('.modal-body #id').val(id);
+        modal.find('.modal-body #list_title').val(title);
+        modal.find('.modal-body #list_price_per_unit').val(price);
+        modal.find('.modal-body #list_get').val(get);
+        modal.find('.modal-body #list_fiscalyear').val(fiscalyear);
+        modal.find('.modal-body #categories_id').val(categories);
+        modal.find('.modal-body #list_status').val(status);
 
-        })
-        $('#removeCategorieslistModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('id')
-            var modal = $(this)
-            modal.find('.modal-body #id').val(id);
-        })
+    })
+    $('#removeCategorieslistModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var id = button.data('id')
+        var modal = $(this)
+        modal.find('.modal-body #id').val(id);
+    })
 
-    </script>
+</script>
 
-    @endsection
+@endsection

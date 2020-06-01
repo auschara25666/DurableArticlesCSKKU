@@ -19,9 +19,6 @@
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
-    <!-- DataTables -->
-    {{-- <link rel="stylesheet" href="{{ asset('plugins/datatables/jquery.dataTables.min.css') }}"> --}}
-
     {{-- datatable --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
@@ -40,7 +37,7 @@
     <!-- jquery ui -->
     <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
     <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> -->
+
 
     <!-- bootstrap js -->
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
@@ -424,7 +421,7 @@
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <a href="/admin"><img src="../images/cs_logo.png" width="200px" alt="Image"></a>
+                <a href="/admin"><img src="{{ asset('images/cs_logo.png') }}" width="200px" alt="Image"></a>
                 <ul class="nav navbar-nav navbar-right">
                     <li id="navDashboard"><a href="/admin">
                             <!-- <img

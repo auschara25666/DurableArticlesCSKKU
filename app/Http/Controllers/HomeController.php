@@ -23,7 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // auth()->user()->role == 'admin';
+        // return view('admin.home-admin');
+
         // if (auth()->user()->user_status == 1) {
+
         if (auth()->user()->role == 'admin') {
             return view('admin.home-admin');
         } elseif (auth()->user()->role == 'personal') {
@@ -36,6 +40,7 @@ class HomeController extends Controller
         } else {
             return error_reporting();
         }
+
         // }
         // elseif (auth()->user()->user_status == 0) {
         //     return back()->with('message', 'กรุณารอ การยืนยันการสมัคร จากแอดมิน!!');

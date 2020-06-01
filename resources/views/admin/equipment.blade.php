@@ -7,15 +7,14 @@
 
         <ol class="breadcrumb">
             <li><a href="/categories">คลัง</a></li>
-            <li><a
-                    href="/categorieslist/{{ $equipment1->list->categories->id }}">{{ $equipment1->list->categories->categories_name }}</a>
+            <li><a href="/categorieslist/{{ $categories->id }}">{{ $categories->categories_name }}</a>
             </li>
-            <li class="active">{{ $equipment1->list->list_title }}</li>
+            <li class="active">{{ $list1->list_title }}</li>
         </ol>
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 style="text-align:center;">{{ $equipment1->list->list_title }}</h3>
+                <h3 style="text-align:center;">{{ $list1->list_title }}</h3>
             </div>
             <!-- /panel-heading -->
 
@@ -48,6 +47,12 @@
                     </div><br />
                     @endif
 
+                    @if(is_null($equipment))
+
+                    <h2 class="text-center">** ไม่มีข้อมูลครุภัณฑ์ **</h2>
+
+                    @else
+
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="myTable" align="center">
                             <thead class="thead-dark">
@@ -63,7 +68,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($equipment as $equipment)
+                                {{-- @foreach ($equipment as $equipment) --}}
                                 <tr>
                                     <td>{{ $equipment->equipment_code }}</td>
                                     <td><img src="{{ asset('images/' . $equipment->equipment_image) }}"
@@ -116,13 +121,13 @@
                                             data-list="{{ $equipment->list_id }}" data-toggle="modal"
                                             data-target="#editEquipmentModal"> <i class="glyphicon glyphicon-edit"></i>
                                             แก้ไข</button>
-                                        <button type="button" class="btn btn-danger" data-catid="{{ $equipment->id }}"
-                                            data-toggle="modal" data-target="#removeEquipmentModal"> <i
+                                        <button type="button" class="btn btn-danger"
+                                            data-catid="{{ $equipment->id }}" data-toggle="modal"
+                                            data-target="#removeEquipmentModal"> <i
                                                 class="glyphicon glyphicon-trash"></i> ลบ</button>
                                     </td>
                                 </tr>
-                                @endforeach
-
+                                {{-- @endforeach --}}
                             </tbody>
                         </table>
                         <!-- /table -->
@@ -303,68 +308,70 @@
                             <div class="form-group">
                                 <label for="equipment_location" class="col-sm-3 control-label">ตำแหน่งที่ตั้ง :</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="equipment_location" placeholder="เช่น 6602C, นักศึกษายืมไป" name="equipment_location">
+                                    <input type="text" class="form-control" id="equipment_location"
+                                        placeholder="เช่น 6602C, นักศึกษายืมไป" name="equipment_location">
                                 </div>
                             </div> <!-- /form-group-->
                             <div class="form-group">
                                 <label for="equipment_role" class="col-sm-3 control-label">ตำแหน่งที่ตั้ง :</label>
                                 <div class="col-sm-8">
                                     <select class="form-control" name="equipment_role" id="equipment_role">
-                                            <option value="1">ผู้ดูแลระบบ/บุคลากร/อาจารย์</option>
-                                            <option value="2">ทุกคน</option>
+                                        <option value="1">ผู้ดูแลระบบ/บุคลากร/อาจารย์</option>
+                                        <option value="2">ทุกคน</option>
                                     </select>
                                 </div>
                             </div> <!-- /form-group-->
 
                             <div class="form-group">
-                                    <label for="equipment_status" class="col-sm-3 control-label">สถานะ :
-                                    </label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control" id="equipment_status" name="equipment_status">
-                                            <option value="1">ว่าง</option>
-                                            <option value="2">ไม่ว่าง</option>
-                                            <option value="3">ซ่อม/รอซ่อม</option>
-                                            <option value="4">ชำรุด</option>
-                                            <option value="5">บริจาค</option>
-                                            <option value="6">รอบริจาค</option>
-                                            <option value="7">ขายทอดตลาด</option>
-                                            <option value="8">โอน</option>
-                                        </select>
-                                    </div>
-                                </div> <!-- /form-group-->
+                                <label for="equipment_status" class="col-sm-3 control-label">สถานะ :
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="equipment_status" name="equipment_status">
+                                        <option value="1">ว่าง</option>
+                                        <option value="2">ไม่ว่าง</option>
+                                        <option value="3">ซ่อม/รอซ่อม</option>
+                                        <option value="4">ชำรุด</option>
+                                        <option value="5">บริจาค</option>
+                                        <option value="6">รอบริจาค</option>
+                                        <option value="7">ขายทอดตลาด</option>
+                                        <option value="8">โอน</option>
+                                    </select>
+                                </div>
+                            </div> <!-- /form-group-->
 
-                                <div class="form-group">
-                                    <label for="equipment_etc" class="col-sm-3 control-label">หมายเหตุ :
-                                    </label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="equipment_etc"
-                                            placeholder="เช่น ส่งซ่อมบริษัท Acer, CPU ใช้งานไม่ได้" name="equipment_etc"
-                                            autocomplete="off">
-                                    </div>
-                                </div> <!-- /form-group-->
+                            <div class="form-group">
+                                <label for="equipment_etc" class="col-sm-3 control-label">หมายเหตุ :
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="equipment_etc"
+                                        placeholder="เช่น ส่งซ่อมบริษัท Acer, CPU ใช้งานไม่ได้" name="equipment_etc"
+                                        autocomplete="off">
+                                </div>
+                            </div> <!-- /form-group-->
 
-                                 <div class="form-group">
-                                    <label for="list_id" class="col-sm-3 control-label">รายการครุภัฑณ์ :
-                                    </label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control" id="list_id" name="list_id">
-                                            @foreach ($list as $list)
-                                                <option value="{{ $list->id }}">{{ $list->id }} : {{ $list->list_title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div> <!-- /form-group-->
+                            <div class="form-group">
+                                <label for="list_id" class="col-sm-3 control-label">รายการครุภัฑณ์ :
+                                </label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="list_id" name="list_id">
+                                        @foreach ($list as $list)
+                                        <option value="{{ $list->id }}">{{ $list->id }} : {{ $list->list_title }}
+                                        </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div> <!-- /form-group-->
 
-                                <div class="modal-footer editProductFooter">
-                                    <button type="button" id="clostProductModal" class="btn btn-default"
-                                        data-dismiss="modal">
-                                        <i class="glyphicon glyphicon-remove-sign"></i>
-                                        ปิด</button>
+                            <div class="modal-footer editProductFooter">
+                                <button type="button" id="clostProductModal" class="btn btn-default"
+                                    data-dismiss="modal">
+                                    <i class="glyphicon glyphicon-remove-sign"></i>
+                                    ปิด</button>
 
-                                    <button type="submit" class="btn btn-success" id="editProductBtn"
-                                        data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i>
-                                        บันทึก</button>
-                                </div> <!-- /modal-footer -->
+                                <button type="submit" class="btn btn-success" id="editProductBtn"
+                                    data-loading-text="Loading..."> <i class="glyphicon glyphicon-ok-sign"></i>
+                                    บันทึก</button>
+                            </div> <!-- /modal-footer -->
 
                     </form>
                 </div>
@@ -376,7 +383,7 @@
 </div>
 <!-- /equipment brand -->
 
-    <!-- categories brand -->
+<!-- categories brand -->
 <div class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" role="dialog" id="removeEquipmentModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -388,20 +395,22 @@
             <form action="{{ route('categorieslist.destroy',$equipment->id) }}" method="POST">
                 @csrf
                 {{method_field('delete')}}
-            <div class="modal-body">
-                <p>คุณแน่ใจว่าจะลบ ?</p>
-            </div>
-            <div class="modal-footer removeCategoriesFooter">
-                <button type="button" class="btn btn-default" data-dismiss="modal"> <i
-                        class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
-                <button type="submit" class="btn btn-primary" id="removeCategoriesBtn" data-loading-text="Loading...">
-                    <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
-            </div>
-        </form>
+                <div class="modal-body">
+                    <p>คุณแน่ใจว่าจะลบ ?</p>
+                </div>
+                <div class="modal-footer removeCategoriesFooter">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> <i
+                            class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
+                    <button type="submit" class="btn btn-primary" id="removeCategoriesBtn"
+                        data-loading-text="Loading...">
+                        <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
+                </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- /categories brand -->
+@endif
 
 <script>
     $('#editEquipmentModal').on('show.bs.modal', function (event) {
