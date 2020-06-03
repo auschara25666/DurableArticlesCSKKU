@@ -43,6 +43,12 @@
                 </div><br />
                 @endif
 
+                @if(is_null($categories))
+
+                <h2 class="text-center">** ไม่มีข้อมูลประเภทครุภัณฑ์ **</h2>
+
+                @else
+
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" id="myTable" align="center">
                         <thead class="thead-dark">
@@ -228,6 +234,8 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <!-- /categories brand -->
+
+@endif
 
 <script>
     $('#editCategoriesModal').on('show.bs.modal', function (event) {

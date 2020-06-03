@@ -74,13 +74,13 @@
                                     <td><img src="{{ asset('images/' . $equipment->equipment_image) }}"
                                             style='height:50px; width:50px;'></td>
                                     <td>{{ $equipment->equipment_name }}</td>
-                                    <td>
+                                    {{-- <td>
                                         @if ($equipment->equipment_role == 1)
                                         {{ 'ผู้ดูแลระบบ/บุคลากร/อาจารย์' }}
                                         @else
                                         {{ 'ทุกคน' }}
                                         @endif
-                                    </td>
+                                    </td> --}}
                                     <td>{{ $equipment->equipment_location }}</td>
                                     <td>
                                         @if ($equipment->equipment_status == 1)
@@ -147,7 +147,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                     aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title"><i class="fa fa-plus"></i> เพิ่มรายการของ</h4>
+                            <h4 class="modal-title"><i class="fa fa-plus"></i> เพิ่มครุภัณฑ์</h4>
                         </div>
 
                         <div class="modal-body" style="max-height:450px; overflow:auto;">
@@ -390,7 +390,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> ลบประเภทครุภัณฑ์</h4>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> ลบครุภัณฑ์</h4>
             </div>
             <form action="{{ route('categorieslist.destroy',$equipment->id) }}" method="POST">
                 @csrf

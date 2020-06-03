@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -36,7 +38,10 @@ class HomeController extends Controller
         } elseif (auth()->user()->role == 'student') {
 
 
-            return view('user.home-student');
+            $news = News::all();
+            $user = User::all();
+
+            return view('user.home-student', compact('news', 'user'));
         } else {
             return error_reporting();
         }

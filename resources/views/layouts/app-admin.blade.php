@@ -399,6 +399,7 @@
             z-index: 0;
             transition: transform 0.3s ease-out;
         }
+
     </style>
 
 
@@ -410,7 +411,8 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                     <span class="sr-only">เมนู</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -432,7 +434,8 @@
                                 src='https://image.flaticon.com/icons/svg/641/641808.svg' width="21px" height="21px"> -->
                             คลัง</a></li>
                     <li class="dropdown" id="navRepair">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false">
                             <!-- <img src='https://image.flaticon.com/icons/svg/745/745437.svg'
                                 width="21px" height="21px">  -->
                             งานซ่อม <span class="caret"></span></a>
@@ -456,76 +459,249 @@
                             จัดการบัญชีผู้ใช้ </a></li>
 
                     <li class="dropdown" id="navSetting">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src='https://image.flaticon.com/icons/svg/2622/2622309.svg' width="21px" height="21px">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                            aria-expanded="false"><img src='https://image.flaticon.com/icons/svg/2622/2622309.svg'
+                                width="21px" height="21px">
                             &nbsp;({{ Auth::user()->name }})&nbsp;
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li id="topNavSetting"><a href="{{ route('user.edit', Auth::user()->id) }}"><img src='https://image.flaticon.com/icons/svg/1293/1293874.svg' width="21px" height="21px"> ตั้งค่า</a></li>
-                            {{-- <li id="topNavLogout"><a href="{{ route('logout') }}" ><img src='https://image.flaticon.com/icons/svg/1716/1716282.svg' width="21px" height="21px"> ออกจากระบบ</a></li> --}}
-                             <li id="topNavSetting"><a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><img src='https://image.flaticon.com/icons/svg/1716/1716282.svg' width="21px" height="21px">
-                                        {{ __('ออกจากระบบ') }}
-                                    </a></li>
+                            <li id="topNavSetting"><a href="{{ route('user.edit', Auth::user()->id) }}"><img
+                                        src='https://image.flaticon.com/icons/svg/1293/1293874.svg' width="21px"
+                                        height="21px"> ตั้งค่า</a></li>
+                            {{-- <li id="topNavLogout"><a href="{{ route('logout') }}" ><img
+                                src='https://image.flaticon.com/icons/svg/1716/1716282.svg' width="21px" height="21px">
+                            ออกจากระบบ</a>
+                    </li> --}}
+                    <li id="topNavSetting"><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><img
+                                src='https://image.flaticon.com/icons/svg/1716/1716282.svg' width="21px" height="21px">
+                            {{ __('ออกจากระบบ') }}
+                        </a></li>
 
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                        </ul>
-                    </li>
-                    <li>
-                        <?php
-                        // $sql = "SELECT * FROM users_personal WHERE user_status = 0";
-                        // $sql1 = "SELECT COUNT(user_status) AS num FROM users_personal WHERE user_status = 0";
-                        // $result = $connect->query($sql);
-                        // $count = $connect->query($sql1);
-                        // $countValue = $count->fetch_assoc();
-                        // if ($countValue == 0) {
-                        // }
-                        ?>
-                        <div class="icons">
-                            <div class="notification">
-                                <!-- <a href="#"> -->
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </ul>
+                </li>
+                <li>
 
-                                <!-- </a> -->
+                    <div class="icons">
+                        <div class="notification">
+                            <div class="notBtn" href="#">
+                                <div class="number">{{ $active->count() }}</div>
+                                <i class="fas fa-bell"></i>
+
+                                <div class="box">
+                                    <div class="display">
+
+                                        {{-- {{ dd($list) }} --}}
+                                        @if (is_null($active))
+                                        <h2 class="text-center">** ไม่มีรายการแจ้งเตือน **</h2>
+
+                                        @else
+                                        <div class="cont">@foreach ($active as $list)
+                                            <form action="{{ route('user.update',$list->id) }}" method="post">
+                                                @csrf
+                                                {{ method_field('patch') }}
+                                                <input type="hidden" id="form" name="form" value="active">
+
+                                                @if ($list->role == 'personal')
+
+                                                <div class='sec new'>
+
+                                                    <div class='profCont'>
+                                                        <img class='profile'
+                                                            src='https://i.ya-webdesign.com/images/transparent-teacher-flat-design-5.png'>
+                                                    </div>
+                                                    <div class='txt'><b>{{ $list->name }}</b>
+                                                        ร้องขอคำอนุมัติการเป็นสมาชิก !
+                                                    </div>
+                                                    <div class='txt'> ชื่อผู้ใช้งาน : <b>{{ $list->user_id }}</b></div>
+                                                    <input type="hidden" id="form" name="form" value="active">
+                                                    <div style='margin-left:180px;'>
+                                                        <button type='submit' id='updateRoleBtn' name='updateRoleBtn'
+                                                            class='btn btn-success'>อนุมัติ</button>
+                                                        <button type='button' class='btn btn-primary'
+                                                            data-toggle='modal' data-target='#DetailPersonnal'
+                                                            data-id="{{ $list->id }}">รายละเอียด</button>
+                                                    </div>
+                                                </div>
+
+                                                @elseif ($list->role == 'student')
+
+                                                <div class='sec new'>
+
+                                                    <div class='profCont'>
+                                                        <img class='profile'
+                                                            src='https://itservice.forest.go.th/download/img/jitasa.png'>
+                                                    </div>
+                                                    <div class='txt'><b>{{ $list->name }}</b>
+                                                        ร้องขอคำอนุมัติการเป็นสมาชิก !
+                                                    </div>
+                                                    <div class='txt'> ชื่อผู้ใช้งาน : <b>{{ $list->user_id }}
+                                                    </div>
+                                                    <input type="hidden" id="form" name="form" value="active">
+                                                    <div style='margin-left:180px;'>
+                                                        <button type='submit' id='updateRoleBtn' name='updateRoleBtn'
+                                                            class='btn btn-success'>อนุมัติ</button>
+                                                        <button type='button' class='btn btn-primary'
+                                                            data-toggle='modal' data-target='#DetailStudent'
+                                                            data-id="{{ $list->id }}">รายละเอียด</button>
+                                                    </div>
+                                                </div>
+
+                                                @endif
+
+                                            </form>
+                                            @endforeach
+                                        </div>
+                                        @endif
+
+
+                                    </div>
+                                </div>
                             </div>
+                            <!-- </a> -->
                         </div>
-                    </li>
+
+                    </div>
+                </li>
 
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
+    <div class=" modal fade" id="DetailPersonnal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        รายละเอียดผู้ใช้งาน</h5>
+
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <div class="bio-content">
+                            <div class="form-row">
+                                <h2>{{ $list->name }}</h2>
+                            </div>
+                            <div class="form-row">
+                                <label>---------------------------------</label>
+                            </div>
+                            <div class="form-row">
+                                <h4>อีเมล : <span style="color:blue;">{{ $list->email }}</span>
+                                </h4>
+                            </div>
+                            <div class="form-row">
+                                <h4>เบอร์โทรศัพท์ : <span style="color:blue;">{{ $list->phone }}</span>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="DetailStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        รายละเอียดผู้ใช้งาน</h5>
+
+                </div>
+                <div class="modal-body">
+
+                    <div>
+                        <div class="bio-content">
+                            <div class="form-row">
+                                <h2>{{ $list->name }}</h2>
+                            </div>
+                            <div class="form-row">
+                                <label>---------------------------------</label>
+                            </div>
+                            <div class="form-row">
+                                <h4>รหัสนักศึกษา : <span style="color:blue;">{{ $list->user_id }}</span>
+                                </h4>
+                            </div>
+                            <div class="form-row">
+                                <h4>อีเมล : <span style="color:blue;">{{ $list->email }}</span>
+                                </h4>
+                            </div>
+                            <div class="form-row">
+                                <h4>เบอร์โทรศัพท์ : <span style="color:blue;">{{ $list->phone }}</span>
+                                </h4>
+                            </div>
+                            <div class="form-row">
+                                <h4>นักศึกษาชั้นปีที่ : <span style="color:blue;">{{ $list->col_year }}</span>
+                                </h4>
+                            </div><br>
+                            <div class="form-row">
+                                <h4>ระดับ
+                                    หลักสูตรวิชา{{ $list->department }}</h4>
+                            </div>
+                            <div class="form-row">
+                                <h4>มหาวิทยาลัยขอนแก่น</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <div class="container">
         @yield('body')
     </div>
 
     <script src="{{ asset('js/categories.js') }}"></script>
-	<!-- file input -->
-	<script src="{{ asset('plugins/fileinput/js/plugins/canvas-to-blob.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('plugins/fileinput/js/plugins/sortable.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('plugins/fileinput/js/plugins/purify.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('plugins/fileinput/js/fileinput.min.js') }}"></script>
+    <!-- file input -->
+    <script src="{{ asset('plugins/fileinput/js/plugins/canvas-to-blob.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/fileinput/js/plugins/sortable.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/fileinput/js/plugins/purify.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('plugins/fileinput/js/fileinput.min.js') }}">
+    </script>
 
 
-	<!-- DataTables -->
-    {{-- <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script> --}}
+    <!-- DataTables -->
+    {{-- <script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}">
+    </script> --}}
 
     <!-- Date Table -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
-</script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js">
+    </script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js">
+    </script>
 
-<script>
-    $(document).ready(function () {
-        $('#myTable').DataTable();
-    });
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
 
-</script>
+    </script>
 
 
 </body>
+
 </html>

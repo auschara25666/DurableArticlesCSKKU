@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class ManagePersonalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.setting-user');
+        $personal = User::where('role', 'personal')->get();
+        return view('admin.manage-personal', compact('personal'));
     }
 
     /**
@@ -37,6 +37,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        //
     }
 
     /**
@@ -58,8 +59,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('admin.setting-user', compact('user'));
+        //
     }
 
     /**
@@ -74,39 +74,30 @@ class UserController extends Controller
         $request->validate([
             'form' => 'required'
         ]);
-
-        if ($request->form == 'username') {
+        if ($request->form == 'edit') {
             $request->validate([
-                'user_id' => 'required'
+                'user_id' => 'required',
+                'password' => 'required',
+                'name' => 'required',
+                'phone' => 'required',
             ]);
 
-            $user = User::find($id);
-            $user->user_id = $request->user_id;
+            $personal = User::find($id);
+            $personal->user_id = $request->user_id;
+            $personal->email = $request->user_id;
+            $personal->name = $request->name;
+            $personal->password = Hash::make($request->password);
+            $personal->phone = $request->phone;
 
-            $user->save();
+            $personal->save();
 
-            return redirect()->back()->with('success', 'แก้ไข Username สำเร็จ');
-        } elseif ($request->form == 'password') {
-            $request->validate([
-                'oldpassword' => 'required',
-                'newpassword' => 'required',
-                'passwordconfirm' => 'required',
-            ]);
-            // dd($request);
-            if ($request->newpassword == $request->passwordconfirm) {
-                $user = User::find($id);
-                if (Hash::check($request->oldpassword, auth()->user()->password)) {
-                    $user->password = Hash::make($request->newpassword);
-                    $user->save();
+            return redirect()->back()->with('success', 'แก้ไขข้อมูลผู้ใช้ .."' . $personal->name . '".. สำเร็จ!!');
+        } elseif ($request->form == 'del') {
+            $del = User::find($id);
+            $del->user_status = 0;
+            $del->save();
 
-                    return redirect()->back()->with('success', 'แก้ไข Password สำเร็จ');
-                }
-            }
-        } elseif ($request->form == 'active') {
-            $user = User::find($id);
-            $user->user_status = 1;
-            $user->save();
-            return redirect()->back();
+            return redirect()->back()->with('success', 'ปิดการใช้งานบัญชีผู้ใช้สำเร็จ!!');
         }
     }
 
@@ -118,6 +109,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::find($id)->delete();
+        return redirect()->back()->with('success', 'ปิดการใช้งานบัญชีผู้ใช้สำเร็จ!!');
     }
 }

@@ -100,8 +100,10 @@
                                     <a href='#' class='btn btn-danger' role='button' alt='ลบ' style='color:white;'
                                         data-toggle='modal' data-target="#removeNewsModal"><i
                                             class='glyphicon glyphicon-remove'></i></a>
-                                    <a href='#' class='btn btn-warning' role='button' alt='แก้ไข' style='color:white;'><i
-                                            class='glyphicon glyphicon-edit' data-toggle='modal'
+                                    <a  class='btn btn-warning' role='button' alt='แก้ไข' style='color:white;'><i
+                                            class='glyphicon glyphicon-edit'
+                                            data-title="{{ $news->news_title }}"
+                                            data-detail="{{ $news->news_detail }}" data-toggle='modal'
                                             data-target="#editNewsModal"></i></a>
                                 @endif
 
@@ -131,12 +133,12 @@
                                     <div class="form-group">
                                         <label for="news_title">หัวข้อ</label>
                                         <textarea type="text" class="form-control" id="news_title" name="news_title"
-                                            placeholder="ใส่หัวข้อ" required>{{ $news->news_title }}</textarea>
+                                            placeholder="ใส่หัวข้อ" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="news_detail">รายละเอียด</label>
                                         <textarea type="text" class="form-control" id="news_detail" name="news_detail"
-                                            placeholder="ใส่รายละเอียด" required>{{ $news->news_detail }}</textarea>
+                                            placeholder="ใส่รายละเอียด" required></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="">เลือกรูปภาพ</label>
@@ -191,8 +193,8 @@
     $('#editNewsModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
-        // var code = button.data('code')
-        // var image = button.data('image')
+        var title = button.data('title')
+        var detail = button.data('detail')
         // var name = button.data('name')
         // var location = button.data('location')
         // var role = button.data('role')
@@ -202,8 +204,8 @@
         var modal = $(this)
 
         modal.find('.modal-body #id').val(id);
-        // modal.find('.modal-body #equipment_code').val(code);
-        // modal.find('.modal-body #equipment_image').val(image);
+        modal.find('.modal-body #news_title').val(title);
+        modal.find('.modal-body #news_detail').val(detail);
         // modal.find('.modal-body #equipment_name').val(name);
         // modal.find('.modal-body #equipment_location').val(location);
         // modal.find('.modal-body #equipment_role').val(role);

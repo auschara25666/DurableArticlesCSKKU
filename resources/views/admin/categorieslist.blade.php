@@ -111,7 +111,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><i class="fa fa-plus"></i> เพิ่มรายการของ</h4>
+                        <h4 class="modal-title"><i class="fa fa-plus"></i> เพิ่มรายการครุภัณฑ์</h4>
                     </div>
                     <div class="modal-body">
 
@@ -186,7 +186,7 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขประเภทครุภัณฑ์</h4>
+                        <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขรายการครุภัณฑ์</h4>
                     </div>
                     <div class="modal-body">
 
@@ -275,7 +275,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> ลบประเภทครุภัณฑ์</h4>
+                <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> ลบรายการครุภัณฑ์</h4>
             </div>
             <form action="{{ route('categorieslist.destroy',$categorieslist->id) }}" method="POST">
                 @csrf
