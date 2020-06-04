@@ -627,7 +627,7 @@
         {{ Auth::user()->name }}
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" href="editprofile.php">ข้อมูลส่วนตัว</a>
+        <a class="dropdown-item" href="/profile">ข้อมูลส่วนตัว</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">ออกจากระบบ</a>

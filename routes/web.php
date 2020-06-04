@@ -60,6 +60,15 @@ Route::group(['middleware' => ['auth']], function () {
         $equipment = Equipment::where('equipment_role', 2)->get();
         return view('user.repair', compact('equipment'));
     });
+    Route::get('/profile', function () {
+        return view('user.profile');
+    });
+    Route::get('/editprofile', function () {
+        return view('user.editprofile');
+    });
+    Route::get('/changpassword', function () {
+        return view('user.changpassword');
+    });
 
     Route::get('/manageuser', function () {
         return view('admin.manageuser');
