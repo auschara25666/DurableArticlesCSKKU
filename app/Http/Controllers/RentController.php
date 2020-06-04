@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Equipment;
 use App\Rent;
+use DateTime;
 use Illuminate\Http\Request;
 
 class RentController extends Controller
@@ -23,9 +25,10 @@ class RentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $rent = Equipment::find($id);
+        return view('user.equipment-user', compact('rent'));
     }
 
     /**
@@ -36,7 +39,21 @@ class RentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'user_id' => 'required',
+            'equipment_id' => 'required',
+            'rent_detail' => 'required',
+        ]);
+
+        $rent = new Rent([
+            'user_id' => $request->user_id,
+            'equipment_id' => $request->equipment_id,
+            'rent_detail' => $request->rent_detail
+        ]);
+
+        $rent->save();
+
+        return redirect()->back()->with('success', 'ทำการยืม ..' . $rent->equipment->equipment_name . '..สำเร็จ กรุณารอการยืนยันจากเจ้าหน้าที่');
     }
 
     /**

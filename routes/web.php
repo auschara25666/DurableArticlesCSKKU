@@ -56,6 +56,10 @@ Route::group(['middleware' => ['auth']], function () {
         $rent = Rent::where('user_id', Auth::user()->id)->get();
         return view('user.rent-user', compact('rent'));
     });
+    Route::get('/repair', function () {
+        $equipment = Equipment::where('equipment_role', 2)->get();
+        return view('user.repair', compact('equipment'));
+    });
 
     Route::get('/manageuser', function () {
         return view('admin.manageuser');

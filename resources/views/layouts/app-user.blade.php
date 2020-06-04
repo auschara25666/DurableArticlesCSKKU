@@ -613,7 +613,7 @@
             <a href="/user-rent" class="nav-link"><i class="far fa-paper-plane"></i>ติดตามการยืม - คืน ครุภัณฑ์</a>
           </li>
           <li class="nav-item">
-            <a href="repair_report.php" class="nav-link"><i class="far fa-sun"></i>แจ้งซ่อม</a>
+            <a href="/repair" class="nav-link"><i class="far fa-sun"></i>แจ้งซ่อม</a>
           </li>
           <li class="nav-item">
             <a href="repair_follow.php" class="nav-link"><i class="far fa-clipboard"></i>ติดตามการแจ้งซ่อม</a>
