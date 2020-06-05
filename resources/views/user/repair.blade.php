@@ -57,7 +57,7 @@
                                     </div> -->
                         </div>
 
-                        <div class="form-group row">
+                        {{-- <div class="form-group row">
                             <div class="input-group mb-2">
 
                                 <label for="inputEmail3" class="col-sm-2 col-form-label">หมายเลขครุภัณฑ์</label>
@@ -65,14 +65,14 @@
                                     <div class="input-group-text"><img
                                             src='https://image.flaticon.com/icons/svg/2627/2627843.svg' width="21px"
                                             height="21px"></div>
-                                            
+
                                 </div>
 
 
                                 <input name="pcode" id="pcode" value="" class="form-control" type="text">
 
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="form-group row">
                             <div class="input-group mb-2">

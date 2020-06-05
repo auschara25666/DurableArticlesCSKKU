@@ -107,6 +107,44 @@ class UserController extends Controller
             $user->user_status = 1;
             $user->save();
             return redirect()->back();
+        } elseif ($request->form == 'profile') {
+            $request->validate([
+                'role' => 'required'
+            ]);
+            if ($request->role == 'per') {
+                $request->validate([
+                    'user_id' => 'required',
+                    'name' => 'required',
+                    'phone' => 'required',
+                ]);
+
+                $user = User::find($id);
+                $user->user_id = $request->user_id;
+                $user->email = $request->user_id;
+                $user->phone = $request->phone;
+                $user->name = $request->name;
+
+                $user->save();
+                return redirect()->back()->with('success', 'แก้ไข ข้อมูลส่วนตัว สำเร็จ');
+            } elseif ($request->role == 'std') {
+                $request->validate([
+                    'user_id' => 'required',
+                    'name' => 'required',
+                    'email' => 'required',
+                    'phone' => 'required',
+                    'col_year' => 'required',
+                ]);
+
+                $user = User::find($id);
+                $user->user_id = $request->user_id;
+                $user->email = $request->email;
+                $user->name = $request->name;
+                $user->phone = $request->phone;
+                $user->col_year = $request->col_year;
+
+                $user->save();
+                return redirect()->back()->with('success', 'แก้ไข ข้อมูลส่วนตัว สำเร็จ');
+            }
         }
     }
 

@@ -23,22 +23,41 @@
                         </div>
 
                         <div class="containner">
+                            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div><br />
+                @endif
+
+                @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div><br />
+                @endif
                             @if ( Auth::user()->role == 'personal' )
                             <div class="bio-info">
+
                                 <div class="row">
 
-                                    <form method="POST" action="php_action/update_profile.php">
-
+                                    <form method="POST" action="{{ route('user.update',Auth::user()->id) }}">
+                                        @csrf
+                                    {{ method_field('patch') }}
+                                    <input type="hidden" id="form" name="form" value="profile">
+                                    <input type="hidden" id="role" name="role" value="per">
                                         <div class="form-group">
-                                            <label for="email">อีเมล *</label>&nbsp;<span class="badge badge-info"
+                                            <label for="user_id">อีเมล *</label>&nbsp;<span class="badge badge-info"
                                                 style="font-weight:normal;">(ใช้ @kku.ac.th เท่านั้น)</span>
-                                            <input type="email" class="form-control" id="email" name="email"
+                                            <input type="email" class="form-control" id="user_id" name="user_id"
                                                 placeholder="user@kku.ac.th" autocomplete="off" required
-                                                value="{{ Auth::user()->user_id }}" disabled>
+                                                value="{{ Auth::user()->user_id }}" readonly>
                                         </div>
                                         <div class="form-group">
-                                            <label for="fullname">ชื่อ - นามสกุล *</label>
-                                            <input type="text" class="form-control" id="fullname" name="fullname"
+                                            <label for="name">ชื่อ - นามสกุล *</label>
+                                            <input type="text" class="form-control" id="name" name="name"
                                                 placeholder="Full Name" autocomplete="off" required
                                                 value="{{ Auth::user()->name }}">
                                         </div>
@@ -59,7 +78,11 @@
                             @elseif(Auth::user()->role == 'student')
                             <div class="bio-info">
                                 <div class="row">
-                                    <form method="POST" action="php_action/update_profile.php">
+                                    <form method="POST" action="{{ route('user.update',Auth::user()->id) }}">
+                                        @csrf
+                                    {{ method_field('patch') }}
+                                    <input type="hidden" id="form" name="form" value="profile">
+                                    <input type="hidden" id="role" name="role" value="std">
                                         <div class="form-group">
                                             <label for="user_id">รหัสนักศึกษา *</label>&nbsp;<span
                                                 class="badge badge-info" style="font-weight:normal;">(ตัวอย่าง:
@@ -67,12 +90,12 @@
                                             <input type="text" class="form-control" id="user_id" name="user_id"
                                                 placeholder="60302xxxx-x" autocomplete="off" required
                                                 OnInput="add_hyphen()" maxlength="11"
-                                                OnKeyPress="return chkNumber(this)" disabled
+                                                OnKeyPress="return chkNumber(this)" readonly
                                                 value="{{ Auth::user()->user_id }}" pattern="[0-9]{8,8}.[-].[0-9]{0,0}">
                                         </div>
                                         <div class="form-group">
-                                            <label for="fullname">ชื่อ - นามสกุล *</label>
-                                            <input type="text" class="form-control" id="fullname" name="fullname"
+                                            <label for="name">ชื่อ - นามสกุล *</label>
+                                            <input type="text" class="form-control" id="name" name="name"
                                                 placeholder="Full Name" autocomplete="off" required
                                                 value="{{ Auth::user()->name }}">
                                         </div>
@@ -104,8 +127,7 @@
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-2" style="padding-top:50px;">
-                                                <button type="submit" id="btnStdSubmit" name="btnStdSubmit"
-                                                    class="btn btn-primary">อัพเดท</button>
+                                                <button type="submit" class="btn btn-primary">อัพเดท</button>
                                             </div>
                                         </div>
                                     </form>
