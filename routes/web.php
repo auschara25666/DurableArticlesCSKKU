@@ -13,6 +13,7 @@
 
 use App\Equipment;
 use App\Rent;
+use App\Repair;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('manage-personal', 'ManagePersonalController');
     Route::resource('manage-student', 'ManageStudentController');
     Route::resource('/student', 'StudentController');
+    Route::resource('repair', 'RepairController');
 
     Route::get('equipment/{id}/{categories}', 'EquipmentController@show');
 
@@ -49,16 +51,21 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/user-equipment', function () {
-        $equipment = Equipment::where('equipment_role', 2)->get();
-        return view('user.equipment-user', compact('equipment'));
+        $equipment2 = Equipment::where('equipment_role', 2)->get();
+        $equipment1 = Equipment::where('equipment_role', 1)->get();
+        return view('user.equipment-user', compact('equipment2', 'equipment1'));
     });
     Route::get('/user-rent', function () {
         $rent = Rent::where('user_id', Auth::user()->id)->get();
         return view('user.rent-user', compact('rent'));
     });
-    Route::get('/repair', function () {
+    Route::get('/repair-report', function () {
         $equipment = Equipment::where('equipment_role', 2)->get();
         return view('user.repair', compact('equipment'));
+    });
+    Route::get('/repair-list', function () {
+        $repair = Repair::all();
+        return view('user.repairlist-user', compact('repair'));
     });
     Route::get('/profile', function () {
         return view('user.profile');
@@ -73,6 +80,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/manageuser', function () {
         return view('admin.manageuser');
     });
+    Route::post('/getData', 'apiController@index');
 
     view()->composer('layouts.app-admin', function ($view) {
         $view->with('active', \App\User::where('user_status', '0')->get());

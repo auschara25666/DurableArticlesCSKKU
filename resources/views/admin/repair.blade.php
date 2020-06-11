@@ -1,48 +1,42 @@
-@extends('layouts.app-user')
+@extends('layouts.app-admin')
 
 @section('body')
-<div class="container" style="padding-top:20px;">
-    <div class="row" style="padding-top:20px;">
-        <div class="col-md-12">
+    <div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
 
-            <div style="box-shadow: 0 1px 2px rgba(0,0,0,.05);border-color: #ddd;margin-bottom: 20px;
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 4px;">
-                <div style="background-image: linear-gradient(to bottom,#f5f5f5 0,#e8e8e8 100%);background-repeat: repeat-x;    color: #333;
-    background-color: #f5f5f5;
-    border-color: #ddd;padding: 10px 15px;
-    border-bottom: 1px solid transparent;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;">
-                    <div style="box-sizing: border-box;">
-                        <i class="glyphicon glyphicon-edit"></i>ติดตามรายการแจ้งซ่อม</div>
-                </div>
-                <div style="padding: 15px;">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div><br />
-                    @endif
+                <h3 style="text-align:center;">รายการแจ้งซ่อม</h3>
+            </div>
+            <div class="panel-body">
 
-                    @if (session()->has('success'))
-                    <div class="alert alert-success">
-                        {{ session()->get('success') }}
-                    </div><br />
-                    @endif
 
-                    <table id='myTable' class="table table-striped table-bordered" style="width:100%">
-                        <thead>
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div><br />
+                @endif
+
+                @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session()->get('success') }}
+                </div><br />
+                @endif
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="myTable" align="center">
+                        <thead class="thead-dark">
                             <tr>
-                                <th id="th_css">พัสดุ</th>
-                                <th id="th_css">วันที่แจ้ง</th>
-                                <th id="th_css">ผู้ปฏิบัติงาน</th>
-                                <th id="th_css">สถานะการซ่อม</th>
-                                <th id="th_css">ตัวเลือก</th>
+                                <th>รหัสครุภัณฑ์</th>
+                            <th>ลักษณะ/ยี่ห้อ</th>
+                            <th>ชื่อผู้แจ้งซ่อม</th>
+                            <th>คำอธิบาย</th>
+                            <th>สถานะการซ่อม</th>
+                            <th style="width:20%;">ตัวเลือก</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -51,9 +45,10 @@
                             @else
                             @foreach ($repair as $list)
                             <tr>
+                                <td>{{ $list->equipment->equipment_code }}</td>
                                 <td>{{ $list->equipment->equipment_name }}</td>
-                                <td>{{ \Carbon\Carbon::parse($list->created_at)->format('d/m/Y') }}</td>
-                                <td>-</td>
+                                <td>{{ $list->user->name }}</td>
+                                <td>{{ $list->repair_detail }}</td>
                                 <td>
                                     @if ($list->repair_status == 0)
                                         <span
@@ -85,25 +80,21 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href='#' class='btn btn-danger' title='ยกเลิก' name='actionRentCancel'
-                                        data-toggle='modal'>
-                                        <i class='fa fa-times-circle' title='ยกเลิก'></i></a>
-                                    <a href='#' class='btn btn-info' title='รายละเอียด' name='actionRepairFollow'
-                                        data-toggle='modal'>
-                                        <i class='fa fa-th-list' title='รายละเอียด'></i></a>
+                                    <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" id="editCategoriesModalBtn" data-target="#editCategoriesModal" onclick="editCategories(' . $repairId . ')"> <i class="glyphicon glyphicon-edit"></i> แก้ไข</button>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#removeCategoriesModal" id="removeCategoriesModalBtn" onclick="removeCategories(' . $repairId . ')"> <i class="glyphicon glyphicon-trash"></i> ลบ</button>
+                                    </div>
                                 </td>
                             </tr>
 
                             @endforeach
                             @endif
-
                         </tbody>
                     </table>
-                    </fieldset>
 
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+            </div> <!-- /panel-body -->
+        </div> <!-- /panel -->
+    </div> <!-- /col-md-12 -->
+</div> <!-- /row -->
 @endsection

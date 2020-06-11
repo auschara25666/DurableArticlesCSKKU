@@ -11,7 +11,7 @@ class Repair extends Model
 
     protected $fillable = [
         'equipment_id', 'repair_detail', 'repair_etc', 'user_id', 'repair_active',
-        'repair_status'
+        'repair_status', 'filenames'
     ];
 
     public function equipment()

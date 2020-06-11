@@ -6,6 +6,7 @@
   <meta charset="UTF-8" />
   <!-- <meta name="viewport" content="width=device-width, initial-scale=0.1"> -->
   <title>ระบบครุภัณฑ์ ภาควิชาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</title>
+  <link rel="icon" href="http://sciweb.kku.ac.th/online_register/images/logo11.png" sizes="32x32">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
 
@@ -613,10 +614,10 @@
             <a href="/user-rent" class="nav-link"><i class="far fa-paper-plane"></i>ติดตามการยืม - คืน ครุภัณฑ์</a>
           </li>
           <li class="nav-item">
-            <a href="/repair" class="nav-link"><i class="far fa-sun"></i>แจ้งซ่อม</a>
+            <a href="/repair-report" class="nav-link"><i class="far fa-sun"></i>แจ้งซ่อม</a>
           </li>
           <li class="nav-item">
-            <a href="repair_follow.php" class="nav-link"><i class="far fa-clipboard"></i>ติดตามการแจ้งซ่อม</a>
+            <a href="/repair-list" class="nav-link"><i class="far fa-clipboard"></i>ติดตามการแจ้งซ่อม</a>
           </li>
         </ul>
         <!-- Example single danger button -->

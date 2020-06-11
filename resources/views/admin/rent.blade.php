@@ -40,7 +40,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($rent as $rent)
+                            @if (is_null($rent))
+                                <h2 class="text-center">** ไม่มีรายการยืม **</h2>
+                            @else
+                                @foreach ($rent as $rent)
                             <tr>
                                 <td>{{ $rent->equipment->equipment_code }}</td>
                                 <td>{{ $rent->equipment->equipment_name }}</td>
@@ -92,6 +95,8 @@
                                 </td>
                             </tr>
                             @endforeach
+                            @endif
+
                         </tbody>
                     </table>
 

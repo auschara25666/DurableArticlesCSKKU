@@ -433,17 +433,10 @@
                             <!-- <img
                                 src='https://image.flaticon.com/icons/svg/641/641808.svg' width="21px" height="21px"> -->
                             คลัง</a></li>
-                    <li class="dropdown" id="navRepair">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                            aria-expanded="false">
+                    <li id="navRent"><a href="/repair">
                             <!-- <img src='https://image.flaticon.com/icons/svg/745/745437.svg'
                                 width="21px" height="21px">  -->
-                            งานซ่อม <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li id="navRepairList"><a href="#">
-                                    รายการซ่อม </a></li>
-                        </ul>
-                    </li>
+                            รายการซ่อม </a></li>
                     <li id="navRent"><a href="/rent">
                             <!-- <img
                                 src='https://image.flaticon.com/icons/svg/630/630757.svg' width="21px" height="21px"> -->
@@ -489,18 +482,17 @@
                     <div class="icons">
                         <div class="notification">
                             <div class="notBtn" href="#">
+
                                 <div class="number">{{ $active->count() }}</div>
+                                @if (is_null($active))
+                                <h2 class="text-center">** ไม่มีรายการแจ้งเตือน **</h2>
+                                @else
                                 <i class="fas fa-bell"></i>
 
                                 <div class="box">
                                     <div class="display">
-
-                                        {{-- {{ dd($list) }} --}}
-                                        @if (is_null($active))
-                                        <h2 class="text-center">** ไม่มีรายการแจ้งเตือน **</h2>
-
-                                        @else
-                                        <div class="cont">@foreach ($active as $list)
+                                        <div class="cont">
+                                            @foreach ($active as $list)
                                             <form action="{{ route('user.update',$list->id) }}" method="post">
                                                 @csrf
                                                 {{ method_field('patch') }}
@@ -556,24 +548,20 @@
                                             </form>
                                             @endforeach
                                         </div>
-                                        @endif
-
-
                                     </div>
                                 </div>
                             </div>
                             <!-- </a> -->
                         </div>
-
                     </div>
                 </li>
-
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <div class=" modal fade" id="DetailPersonnal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+
+    {{-- <div class=" modal fade" id="DetailPersonnal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -611,9 +599,9 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="modal fade" id="DetailStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    {{-- <div class="modal fade" id="DetailStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -667,8 +655,8 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    </div> --}}
+@endif
 
     <div class="container">
         @yield('body')
