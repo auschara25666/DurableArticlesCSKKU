@@ -51,9 +51,10 @@ Route::group(['middleware' => ['auth']], function () {
     });
 
     Route::get('/user-equipment', function () {
-        $equipment2 = Equipment::where('equipment_role', 2)->get();
+        $equipment2 = Equipment::all();
         $equipment1 = Equipment::where('equipment_role', 1)->get();
-        return view('user.equipment-user', compact('equipment2', 'equipment1'));
+        // dd($equipment2);
+        return view('user.equipment-user', compact('equipment1', 'equipment2'));
     });
     Route::get('/user-rent', function () {
         $rent = Rent::where('user_id', Auth::user()->id)->get();
@@ -64,7 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
         return view('user.repair', compact('equipment'));
     });
     Route::get('/repair-list', function () {
-        $repair = Repair::all();
+        $repair = Repair::where('user_id', Auth::user()->id)->get();
         return view('user.repairlist-user', compact('repair'));
     });
     Route::get('/profile', function () {

@@ -83,6 +83,10 @@
                 </div><br />
                 @endif
 
+                @if(is_null($news))
+                <h2 class="text-center">** ไม่มีรายการข่าว **</h2>
+                @else
+
                 @foreach ($news as $news)
                     @if($news->news_status == 1)
                         <article id='featured'>
@@ -106,81 +110,12 @@
                                             data-detail="{{ $news->news_detail }}" data-toggle='modal'
                                             data-target="#editNewsModal"></i></a>
                                 @endif
-
-
                             </div>
 
                         </article>
                     @endif
                 @endforeach
-
-                <div class="modal fade" id="editNewsModal" tabindex="-1" role="dialog" aria-labelledby='myModalLabel'
-                    aria-hidden='true'>
-                    <div class='modal-dialog' role='document'>
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                    <span aria-hidden='true'>&times;</span>
-                                </button>
-                                <h5 class='modal-title' id='myModalLabel'>แก้ไขประกาศ</h5>
-                            </div>
-                            <form action="{{ route('news.update',$news->id) }}" method='post'
-                                enctype="multipart/form-data">
-                                @csrf
-                                {{ method_field('patch') }}
-                                <div class="modal-body">
-                                    <legend></legend>
-                                    <div class="form-group">
-                                        <label for="news_title">หัวข้อ</label>
-                                        <textarea type="text" class="form-control" id="news_title" name="news_title"
-                                            placeholder="ใส่หัวข้อ" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="news_detail">รายละเอียด</label>
-                                        <textarea type="text" class="form-control" id="news_detail" name="news_detail"
-                                            placeholder="ใส่รายละเอียด" required></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">เลือกรูปภาพ</label>
-                                        <input type="file" class="form-control" id="news_image" name="news_image">
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer">
-                                    <button type='button' class='btn btn-secondary' data-dismiss='modal'>ยกเลิก</button>
-                                    <button type='submit' class='btn btn-danger'>บันทึก</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal deleteNews -->
-                <div class='modal fade' id='removeNewsModal' tabindex='-1' role='dialog' aria-labelledby='myModalLabel'
-                    aria-hidden='true'>
-                    <div class='modal-dialog' role='document'>
-                        <div class='modal-content'>
-                            <div class='modal-header'>
-                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
-                                    <span aria-hidden='true'>&times;</span>
-                                </button>
-                                <h5 class='modal-title' id='myModalLabel'>ลบข่าว</h5>
-                            </div>
-                            <form action='{{ route('news.destroy',$news->id) }}' method='post'>
-                                @csrf
-                                {{method_field('delete')}}
-                                <div class='modal-body'>
-                                    คุณแน่ใจที่จะลบ ?
-                                </div>
-                                <div class='modal-footer'>
-                                    <button type='button' class='btn btn-secondary' data-dismiss='modal'>ยกเลิก</button>
-                                    <button type='submit' class='btn btn-danger'>ลบ</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
+@endif
 
 
 

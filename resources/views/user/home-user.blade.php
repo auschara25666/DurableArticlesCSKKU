@@ -97,8 +97,8 @@
         </div>
     </div>
 </div>
-
-<div class="modal fade" id="NewsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+{{-- 
+  <div class="modal fade" id="NewsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -141,7 +141,7 @@
             </form>
         </div>
     </div>
-</div>
+</div> --}}
 
 <script type="text/javascript">
 

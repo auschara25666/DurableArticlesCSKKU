@@ -50,6 +50,9 @@ class RentController extends Controller
             'equipment_id' => $request->equipment_id,
             'rent_detail' => $request->rent_detail
         ]);
+        $equipment = Equipment::find($request->equipment_id);
+        $equipment->equipment_status = 2;
+        $equipment->save();
 
         $rent->save();
 
@@ -91,7 +94,7 @@ class RentController extends Controller
             'user_id' => 'required',
             'equipment_id' => 'required',
             'rent_status' => 'required',
-            'rent_etc' => 'required',
+            'rent_etc' => '',
             'rent_date' => '',
             'rent_return_date_fix' => '',
             'rent_return_date' => '',

@@ -48,6 +48,7 @@
                                             src='https://image.flaticon.com/icons/svg/745/745437.svg' width="21px"
                                             height="21px"></div>
                                 </div>
+
                                 <select class="form-control" title="เลือกพัสดุ" id="picker" name="equipment_id"
                                     data-live-search="true">
                                 @if(is_null($equipment))

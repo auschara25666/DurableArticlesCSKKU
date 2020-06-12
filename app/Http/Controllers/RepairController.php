@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Equipment;
 use App\Repair;
 use App\RepairImage;
 use Illuminate\Http\Request;
@@ -48,6 +49,8 @@ class RepairController extends Controller
         ]);
 
 
+
+
         if ($request->hasfile('filenames')) {
             foreach ($request->file('filenames') as $file) {
                 $imageName = time() . '.' . $file->extension();
@@ -64,9 +67,12 @@ class RepairController extends Controller
             'filenames' => json_encode($data)
         ]);
         // dd($repair);
+        $equipment = Equipment::find($request->equipment_id);
+        $equipment->equipment_status = 3;
+        $equipment->save();
         $repair->save();
 
-        return redirect('/repair')->with('success', 'ทำการแจ้งซ่อมครุภัณฑ์ สำเร็จ!!');
+        return redirect('/repair-list')->with('success', 'ทำการแจ้งซ่อมครุภัณฑ์ สำเร็จ!!');
     }
 
     /**
@@ -98,9 +104,35 @@ class RepairController extends Controller
      * @param  \App\Repair  $repair
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Repair $repair)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'repair_status' => 'required',
+            'repair_detail' => '',
+            'repair_etc' => '',
+        ]);
+        if ($request->repair_status == 3 || $request->repair_status == 5 || $request->repair_status == 6) {
+            // dd('456');
+            $repair = Repair::find($id)->delete();
+            // $repair->repair_status = $request->repair_status;
+            // $repair->repair_detail = $request->repair_detail;
+            // $repair->repair_etc = $request->repair_etc;
+
+            $equipment = Equipment::find($request->equipment_id);
+            $equipment->equipment_status = 1;
+            $equipment->save();
+            // $repair->save();
+            return redirect()->back()->with('success', 'ทำการซ่อม สำเร็จ !!');
+        } else {
+            // dd('123');
+            $repair = Repair::find($id);
+            $repair->repair_status = $request->repair_status;
+            $repair->repair_detail = $request->repair_detail;
+            $repair->repair_etc = $request->repair_etc;
+
+            $repair->save();
+            return redirect()->back()->with('success', 'แก้ไข รายการซ่อม สำเร็จ !!');
+        }
     }
 
     /**
@@ -109,8 +141,9 @@ class RepairController extends Controller
      * @param  \App\Repair  $repair
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Repair $repair)
+    public function destroy($id)
     {
-        //
+        Repair::find($id)->delete();
+        return redirect()->back()->with('success', 'ยกเลิก รายการซ่อม สำเร็จ !!');
     }
 }

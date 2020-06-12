@@ -43,11 +43,7 @@
                 </div><br />
                 @endif
 
-                @if(is_null($categories))
 
-                <h2 class="text-center">** ไม่มีข้อมูลประเภทครุภัณฑ์ **</h2>
-
-                @else
 
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" id="myTable" align="center">
@@ -59,26 +55,137 @@
                             </tr>
                         </thead>
                         <tbody class="table table-active">
-                            @foreach ($categories as $categories)
+                             @if(is_null($categories))
+
+                            @else
+                            @foreach ($categories as $list)
                             <tr>
-                                <td>{{ $categories->categories_code }}</td>
-                                <td><a href="/categorieslist/{{ $categories->id }}"><label
-                                            style="Font-weight:normal;font-size:15px;">{{ $categories->categories_name }}</label></a>
+                                <td>{{ $list->categories_code }}</td>
+                                <td><a href="/categorieslist/{{ $list->id }}"><label
+                                            style="Font-weight:normal;font-size:15px;">{{ $list->categories_name }}</label></a>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-warning" data-id="{{ $categories->id }}"
-                                        data-code="{{ $categories->categories_code }}"
-                                        data-name="{{ $categories->categories_name }}"
-                                        data-status="{{ $categories->categories_status }}" data-toggle="modal"
+                                    <button type="button" class="btn btn-warning" data-id="{{ $list->id }}"
+                                        data-code="{{ $list->categories_code }}"
+                                        data-name="{{ $list->categories_name }}"
+                                        data-status="{{ $list->categories_status }}" data-toggle="modal"
                                         data-target="#editCategoriesModal"> <i class="glyphicon glyphicon-edit"></i>
                                         แก้ไข</button>
-                                    <button type="button" class="btn btn-danger" data-catid="{{ $categories->id }}"
+                                    <button type="button" class="btn btn-danger" data-catid="{{ $list->id }}"
                                         data-toggle="modal" data-target="#removeCategoriesModal"> <i
                                             class="glyphicon glyphicon-trash"></i> ลบ</button>
                                 </td>
                             </tr>
-                            @endforeach
+
                         </tbody>
+
+                        <!-- edit categories brand -->
+                        <div class="modal fade" id="editCategoriesModal" aria-labelledby="myModalLabel" tabindex="-1"
+                            role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+
+                                    <form class="form-horizontal"
+                                        action="{{ route('categories.update',$list->id) }}" method="POST">
+                                        @csrf
+                                        {{ method_field('patch') }}
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขประเภทครุภัณฑ์</h4>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div id="edit-categories-messages"></div>
+
+                                            <div class="modal-loading div-hide"
+                                                style="width:50px; margin:auto;padding-top:50px; padding-bottom:50px;">
+                                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+
+                                            <div class="edit-categories-result">
+                                                {{-- <input type="hidden" name="id" id="id" value=""> --}}
+                                                <input type="hidden" name="categories_status" id="categories_status"
+                                                    value="">
+
+                                                <div class="form-group">
+                                                    <label for="categories_code"
+                                                        class="col-sm-4 control-label">รหัสประเภทครุภัณฑ์</label>
+                                                    <label class="col-sm-1 control-label">: </label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" id="categories_code"
+                                                            placeholder="รหัสประเภท" name="categories_code"
+                                                            autocomplete="off">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="categories_name"
+                                                        class="col-sm-4 control-label">ชื่อประเภทครุภัณฑ์</label>
+                                                    <label class="col-sm-1 control-label">: </label>
+                                                    <div class="col-sm-7">
+                                                        <input type="text" class="form-control" id="categories_name"
+                                                            placeholder="ชื่อประเภท" name="categories_name"
+                                                            autocomplete="off">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- /edit brand result -->
+
+                                        </div> <!-- /modal-body -->
+
+                                        <div class="modal-footer editCategoriesFooter">
+                                            <button type="button" id="clostEditModal" class="btn btn-default"
+                                                data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i>
+                                                ปิด</button>
+
+                                            <button type="submit" class="btn btn-success" id="editCategoriesBtn"
+                                                data-loading-text="Loading..." autocomplete="off"> <i
+                                                    class="glyphicon glyphicon-ok-sign"></i> บันทึก</button>
+                                        </div>
+                                        <!-- /modal-footer -->
+                                    </form>
+                                    <!-- /.form -->
+                                </div>
+                                <!-- /modal-content -->
+                            </div>
+                            <!-- /modal-dailog -->
+                        </div>
+                        <!-- /categories brand -->
+
+                        <!-- categories brand -->
+                        <div class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" role="dialog"
+                            id="removeCategoriesModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i>
+                                            ลบประเภทครุภัณฑ์</h4>
+                                    </div>
+                                    <form action="{{ route('categories.destroy',$list->id) }}" method="POST">
+                                        @csrf
+                                        {{method_field('delete')}}
+                                        <div class="modal-body">
+                                            <p>คุณแน่ใจว่าจะลบ ?</p>
+                                        </div>
+                                        <div class="modal-footer removeCategoriesFooter">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"> <i
+                                                    class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
+                                            <button type="submit" class="btn btn-primary" id="removeCategoriesBtn"
+                                                data-loading-text="Loading...">
+                                                <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
+                                        </div>
+                                    </form>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div>
+                        <!-- /categories brand -->
+
+                        @endforeach
                     </table>
                     <!-- /table -->
                 </div>
@@ -138,102 +245,6 @@
     </div> <!-- /modal-dailog -->
 </div>
 <!-- /add categories -->
-
-
-<!-- edit categories brand -->
-<div class="modal fade" id="editCategoriesModal" aria-labelledby="myModalLabel" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-            <form class="form-horizontal" action="{{ route('categories.update',$categories->id) }}" method="POST">
-                @csrf
-                {{ method_field('patch') }}
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขประเภทครุภัณฑ์</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div id="edit-categories-messages"></div>
-
-                    <div class="modal-loading div-hide"
-                        style="width:50px; margin:auto;padding-top:50px; padding-bottom:50px;">
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                        <span class="sr-only">Loading...</span>
-                    </div>
-
-                    <div class="edit-categories-result">
-                        {{-- <input type="hidden" name="id" id="id" value=""> --}}
-                        <input type="hidden" name="categories_status" id="categories_status" value="">
-
-                        <div class="form-group">
-                            <label for="categories_code" class="col-sm-4 control-label">รหัสประเภทครุภัณฑ์</label>
-                            <label class="col-sm-1 control-label">: </label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" id="categories_code" placeholder="รหัสประเภท"
-                                    name="categories_code" autocomplete="off">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="categories_name" class="col-sm-4 control-label">ชื่อประเภทครุภัณฑ์</label>
-                            <label class="col-sm-1 control-label">: </label>
-                            <div class="col-sm-7">
-                                <input type="text" class="form-control" id="categories_name" placeholder="ชื่อประเภท"
-                                    name="categories_name" autocomplete="off">
-                            </div>
-                        </div>
-
-                    </div>
-                    <!-- /edit brand result -->
-
-                </div> <!-- /modal-body -->
-
-                <div class="modal-footer editCategoriesFooter">
-                    <button type="button" id="clostEditModal" class="btn btn-default" data-dismiss="modal"> <i
-                            class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
-
-                    <button type="submit" class="btn btn-success" id="editCategoriesBtn" data-loading-text="Loading..."
-                        autocomplete="off"> <i class="glyphicon glyphicon-ok-sign"></i> บันทึก</button>
-                </div>
-                <!-- /modal-footer -->
-            </form>
-            <!-- /.form -->
-        </div>
-        <!-- /modal-content -->
-    </div>
-    <!-- /modal-dailog -->
-</div>
-<!-- /categories brand -->
-
-<!-- categories brand -->
-<div class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" role="dialog" id="removeCategoriesModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> ลบประเภทครุภัณฑ์</h4>
-            </div>
-            <form action="{{ route('categories.destroy',$categories->id) }}" method="POST">
-                @csrf
-                {{method_field('delete')}}
-                <div class="modal-body">
-                    <p>คุณแน่ใจว่าจะลบ ?</p>
-                </div>
-                <div class="modal-footer removeCategoriesFooter">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"> <i
-                            class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
-                    <button type="submit" class="btn btn-primary" id="removeCategoriesBtn"
-                        data-loading-text="Loading...">
-                        <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
-                </div>
-            </form>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<!-- /categories brand -->
 
 @endif
 

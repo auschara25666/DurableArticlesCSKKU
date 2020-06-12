@@ -38,6 +38,7 @@ class CategoriesListController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'list_title' => 'required',
             'categories_id' => 'required',
@@ -74,15 +75,17 @@ class CategoriesListController extends Controller
         // $categorieslist = CategoriesList::find('categories_id',$id);
         $categories1 = Categories::find($id);
         $categories1 = $categories1->categories_name;
+        $categories2 = Categories::find($id);
+        $categories2 = $categories2->id;
 
-        $categorieslist = CategoriesList::where('categories_id', $id)->first();
+        $categorieslist = CategoriesList::where('categories_id', $id)->get();
 
         $categories = Categories::all();
         // dd($categories1);
         // dd($categorieslist);
 
 
-        return view('admin.categorieslist', compact('categorieslist', 'categories', 'categories1'));
+        return view('admin.categorieslist', compact('categorieslist', 'categories', 'categories1', 'categories2'));
     }
 
     /**

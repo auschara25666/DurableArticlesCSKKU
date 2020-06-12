@@ -16,8 +16,8 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        $equipment = Equipment::all();
-        return view('admin.equipment', compact('equipment'));
+        $equipments = Equipment::all();
+        return view('admin.equipment', compact('equipments'));
     }
 
     /**
@@ -40,7 +40,8 @@ class EquipmentController extends Controller
     {
         $request->validate([
             'equipment_code' => 'required',
-            'equipment_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'equipment_image' => '',
+            'equipment_image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             // 'equipment_image_64' => '',
             'equipment_name' => 'required',
             'equipment_location' => '',
@@ -51,9 +52,10 @@ class EquipmentController extends Controller
             'list_id' => 'required'
         ]);
 
+
         $imageName = time() . '.' . $request->equipment_image->extension();
 
-        $request->equipment_image->move(public_path('images'), $imageName);
+        $request->equipment_image->move(public_path('images\equipment'), $imageName);
 
         $equipment_image_64 = 'image_64';
 
@@ -82,11 +84,11 @@ class EquipmentController extends Controller
      */
     public function show($id, $categories)
     {
-        $equipment = Equipment::where('list_id', $id)->first();
+        $equipments = Equipment::where('list_id', $id)->get();
         $list = CategoriesList::all();
         $list1 = CategoriesList::find($id);
         $categories = Categories::find($categories);
-        return view('admin.equipment', compact('categories', 'equipment', 'list', 'list1'));
+        return view('admin.equipment', compact('categories', 'list1', 'equipments', 'list'));
     }
 
     /**
@@ -111,7 +113,7 @@ class EquipmentController extends Controller
     {
         $request->validate([
             'equipment_code' => 'required',
-            'image' => 'required |image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'equipment_name' => 'required',
             'equipment_location' => '',
             'equipment_role' => 'required',
@@ -121,25 +123,40 @@ class EquipmentController extends Controller
             'list_id' => 'required'
         ]);
 
-        $imageName = time() . '.' . $request->image->extension();
+        if ($request->image == '') {
+            $equipment = Equipment::find($id);
+            $equipment->equipment_code = $request->equipment_code;
+            $equipment->equipment_name = $request->equipment_name;
+            $equipment->equipment_location = $request->equipment_location;
+            $equipment->equipment_role = $request->equipment_role;
+            $equipment->equipment_etc = $request->equipment_etc;
+            $equipment->equipment_status = $request->equipment_status;
+            $equipment->equipment_active = $request->equipment_active;
+            $equipment->list_id = $request->list_id;
 
-        $request->image->move(public_path('images'), $imageName);
+            $equipment->save();
+            return redirect()->back()->with('success', 'แก้ไข "' . $equipment->equipment_name . '" สำเร็จ!!');
+        } else {
+            $imageName = time() . '.' . $request->image->extension();
 
-        $equipment_image_64 = 'image_64';
+            $request->image->move(public_path('images'), $imageName);
 
-        $equipment = Equipment::find($id);
-        $equipment->equipment_code = $request->equipment_code;
-        $equipment->equipment_image = $imageName;
-        $equipment->equipment_name = $request->equipment_name;
-        $equipment->equipment_location = $request->equipment_location;
-        $equipment->equipment_role = $request->equipment_role;
-        $equipment->equipment_etc = $request->equipment_etc;
-        $equipment->equipment_status = $request->equipment_status;
-        $equipment->equipment_active = $request->equipment_active;
-        $equipment->list_id = $request->list_id;
+            $equipment_image_64 = 'image_64';
 
-        $equipment->save();
-        return redirect()->back()->with('success', 'แก้ไข "' . $equipment->equipment_name . '" สำเร็จ!!');
+            $equipment = Equipment::find($id);
+            $equipment->equipment_code = $request->equipment_code;
+            $equipment->equipment_image = $imageName;
+            $equipment->equipment_name = $request->equipment_name;
+            $equipment->equipment_location = $request->equipment_location;
+            $equipment->equipment_role = $request->equipment_role;
+            $equipment->equipment_etc = $request->equipment_etc;
+            $equipment->equipment_status = $request->equipment_status;
+            $equipment->equipment_active = $request->equipment_active;
+            $equipment->list_id = $request->list_id;
+
+            $equipment->save();
+            return redirect()->back()->with('success', 'แก้ไข "' . $equipment->equipment_name . '" สำเร็จ!!');
+        }
     }
 
     /**
