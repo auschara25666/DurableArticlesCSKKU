@@ -59,41 +59,69 @@
                                         <span
                                             style='font-size:16px;font-weight: normal; background:#660000;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>แจ้งซ่อม</span>
                                     @endif
-                                    @if ($list->rent_status == 1)
+                                    @if ($list->repair_status == 1)
                                         <span
                                             style='font-size:16px;font-weight: normal; background:#120eeb;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>กำลังดำเนินการ</label>
                                     @endif
-                                    @if ($list->rent_status == 2)
+                                    @if ($list->repair_status == 2)
                                         <span
                                             style='font-size:16px;font-weight: normal; background:#d940ff;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>รออะไหล่</label>
                                     @endif
-                                    @if ($list->rent_status == 3)
+                                    @if ($list->repair_status == 3)
                                         <span
                                             style='font-size:16px;font-weight: normal; background:#06d628;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ซ่อมสำเร็จ</label>
                                     @endif
-                                    @if ($list->rent_status == 4)
+                                    @if ($list->repair_status == 4)
                                         <span
                                             style='font-size:16px;font-weight: normal; background:#ff0000;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ซ่อมไม่สำเร็จ</label>
                                     @endif
-                                    @if ($list->rent_status == 5)
+                                    @if ($list->repair_status == 5)
                                         <span
                                             style='font-size:16px;font-weight: normal; background:#ff6ff0;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ยกเลิกการซ่อม</label>
                                     @endif
-                                    @if ($list->rent_status == 6)
+                                    @if ($list->repair_status == 6)
                                         <span
                                             style='font-size:16px;font-weight: normal; background:#000000;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ส่งมอบเรียบร้อย</label>
                                     @endif
                                 </td>
                                 <td>
-                                    <a href='#' class='btn btn-danger' title='ยกเลิก' name='actionRentCancel'
-                                        data-toggle='modal'>
-                                        <i class='fa fa-times-circle' title='ยกเลิก'></i></a>
+                                    <a href="#removeRepairModal{{ $list->id }}" data-toggle="modal"
+                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ลบ</a>
                                     <a href='#' class='btn btn-info' title='รายละเอียด' name='actionRepairFollow'
                                         data-toggle='modal'>
                                         <i class='fa fa-th-list' title='รายละเอียด'></i></a>
                                 </td>
                             </tr>
+                            <!-- del repair -->
+                            <div class="modal fade" id="removeRepairModal{{ $list->id }}" aria-labelledby="myModalLabel"
+                                tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
 
+                                            <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i>
+                                                ยกเลิกรายการซ่อม</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <form action="{{ route('repair.destroy',$list->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            {{method_field('delete')}}
+                                            <div class="modal-body">
+                                                <p>คุณแน่ใจว่าจะยกเลิกรายการแจ้งซ่อม ?</p>
+                                                <input type="hidden" name="equipment" id="equipment" value="{{ $list->equipment->id }}">
+                                            </div>
+                                            <div class="modal-footer removeCategoriesFooter">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
+                                                <button type="submit" class="btn btn-danger"
+                                                    data-loading-text="Loading..."> ยืนยัน</button>
+                                            </div>
+                                        </form>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
                             @endforeach
                             @endif
 

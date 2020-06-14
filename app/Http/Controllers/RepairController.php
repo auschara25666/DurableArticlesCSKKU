@@ -141,9 +141,12 @@ class RepairController extends Controller
      * @param  \App\Repair  $repair
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         Repair::find($id)->delete();
+        $equipment = Equipment::find($request->equipment);
+        $equipment->equipment_status = 1;
+        $equipment->save();
         return redirect()->back()->with('success', 'ยกเลิก รายการซ่อม สำเร็จ !!');
     }
 }

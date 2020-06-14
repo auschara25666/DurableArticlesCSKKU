@@ -31,7 +31,7 @@
                                 <th id="th_css">รหัสครุภัณฑ์</th>
                                 <th id="th_css">ลักษณะ/ยี่ห้อ</th>
                                 <th id="th_css">สถานะการยืม</th>
-                                <th id="th_css">วัตถุประสงค์</th>
+                                {{-- <th id="th_css">วัตถุประสงค์</th> --}}
                                 <th id="th_css">หมายเหตุ</th>
                                 <th id="th_css">ตัวเลือก</th>
                             </tr>
@@ -43,7 +43,7 @@
                             @foreach ($rent as $list)
                             <tr>
                                 <td>{{ $list->user->name }}</td>
-                                <td><img src="{{ asset('images/' . $list->equipment->equipment_image) }}"
+                                <td><img src="{{ asset('images/equipment/' . $list->equipment->equipment_image) }}"
                                         style='height:100px; width:100px;'></td>
                                 <td>{{ $list->equipment->equipment_code }}</td>
                                 <td>{{ $list->equipment->equipment_name }}</td>
@@ -74,17 +74,41 @@
                                                         style='font-size:16px;font-weight: normal; background:#ff6ff0;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ยกเลิกการยืม</label>
                                                         @endif
                                 </td>
-                                <td>{{ $list->rent_detail }}</td>
                                 <td>{{ $list->rent_etc }}</td>
                                 <td>
-                                    <a href='#' class='btn btn-danger' title='ยกเลิก' name='actionRentCancel'
-                                        data-toggle='modal'>
-                                        <i class='fa fa-times-circle' title='ยกเลิก'></i></a>
-                                    <a href='#' class='btn btn-info' title='รายละเอียด' name='actionRepairFollow'
-                                        data-toggle='modal'>
-                                        <i class='fa fa-th-list' title='รายละเอียด'></i></a>
-                                </td>
+                                    <a href="#removeRentModal{{ $list->id }}" data-toggle="modal"
+                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ลบ</a>
                             </tr>
+                            <!-- del repair -->
+                            <div class="modal fade" id="removeRentModal{{ $list->id }}" aria-labelledby="myModalLabel"
+                                tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+
+                                            <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i>
+                                                ยกเลิกรายการยืม</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        </div>
+                                        <form action="{{ route('rent.destroy',$list->id) }}"
+                                            method="POST">
+                                            @csrf
+                                            {{method_field('delete')}}
+                                            <div class="modal-body">
+                                                <p>คุณแน่ใจว่าจะยกเลิกรายการยืม ?</p>
+                                                <input type="hidden" name="equipment" id="equipment" value="{{ $list->equipment->id }}">
+                                            </div>
+                                            <div class="modal-footer removeCategoriesFooter">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal">ปิด</button>
+                                                <button type="submit" class="btn btn-danger"
+                                                    data-loading-text="Loading..."> ยืนยัน</button>
+                                            </div>
+                                        </form>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div>
+                            <!-- /.modal -->
                             @endforeach
                             @endif
 

@@ -7,36 +7,22 @@
   <!-- <meta name="viewport" content="width=device-width, initial-scale=0.1"> -->
   <title>ระบบครุภัณฑ์ ภาควิชาวิทยาการคอมพิวเตอร์ มหาวิทยาลัยขอนแก่น</title>
   <link rel="icon" href="http://sciweb.kku.ac.th/online_register/images/logo11.png" sizes="32x32">
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
 
-  <link href="https://fonts.googleapis.com/css2?family=K2D:wght@300&display=swap" rel="stylesheet">
+      <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-  <!-- Popper JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-  <!-- Latest compiled JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-  <!-- Data Table -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-  <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+    {{-- datatable --}}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
 
   <!-- icon -->
   <!-- <script src="https://kit.fontawesome.com/ba8cda9d5b.js" crossorigin="anonymous"></script> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
 
 
-
-
-  <link href="dist/css/select2.min.css" rel="stylesheet" />
-  <script src="dist/js/select2.min.js"></script>
+  {{-- <link href="dist/css/select2.min.css" rel="stylesheet" />
+  <script src="dist/js/select2.min.js"></script> --}}
 
 
   <style>
@@ -599,10 +585,6 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav ml-auto">
-          <!-- <div class="hori-selector">
-              <div class="left"></div>
-              <div class="right"></div>
-            </div> -->
 
           <li class="nav-item">
             <a href="/home" class="nav-link"><i class="far fa-newspaper"></i>หน้าแรก</a>
@@ -639,215 +621,44 @@
     </div>
   </nav>
 
-        <!-- start: header -->
-        {{-- <header class="header">
-            <div class="logo-container">
-                <a href="index.php" class="logo">
-                    <img src="../images/cs_logo.png" width="18%">
-                </a>
-                <div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
-                    data-fire-event="sidebar-left-opened">
-                    <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-                </div>
-            </div>
-
-            <!-- start: search & user box -->
-            <div class="header-right">
-                <span class="separator"></span>
-                <ul class="notifications">
-                    <li>
-                        <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
-                            <i class="fa fa-bell"></i>
-                            <span class="badge">3</span>
-                        </a>
-
-                        <div class="dropdown-menu notification-menu">
-                            <div class="notification-title">
-                                <span class="pull-right label label-default">3</span>
-                                Alerts
-                            </div>
-
-                            <div class="content">
-                                <ul>
-                                    <li>
-                                        <a href="#" class="clearfix">
-                                            <div class="image">
-                                                <i class="fa fa-thumbs-down bg-danger"></i>
-                                            </div>
-                                            <span class="title">Server is Down!</span>
-                                            <span class="message">Just now</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="clearfix">
-                                            <div class="image">
-                                                <i class="fa fa-lock bg-warning"></i>
-                                            </div>
-                                            <span class="title">User Locked</span>
-                                            <span class="message">15 minutes ago</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="clearfix">
-                                            <div class="image">
-                                                <i class="fa fa-signal bg-success"></i>
-                                            </div>
-                                            <span class="title">Connection Restaured</span>
-                                            <span class="message">10/10/2014</span>
-                                        </a>
-                                    </li>
-                                </ul>
-
-                                <hr />
-
-                                <div class="text-right">
-                                    <a href="#" class="view-more">View All</a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-                <span class="separator"></span>
-
-                <div id="userbox" class="userbox">
-                    <a href="#" data-toggle="dropdown">
-                        <!-- <figure class="profile-picture">
-								<img src="assets/images/!logged-user.jpg" alt="Joseph Doe" class="img-circle" data-lock-picture="assets/images/!logged-user.jpg" />
-							</figure> -->
-                        <div class="profile-info">
-
-
-
-                            <span class="name">{{ Auth::user()->name }}</span>
-                            <!-- <span class="role">administrator</span> -->
-                        </div>
-
-                        <i class="fa custom-caret"></i>
-                    </a>
-
-                    <div class="dropdown-menu">
-                        <ul class="list-unstyled">
-                            <li class="divider"></li>
-                            <li>
-                                <a role="menuitem" tabindex="-1" href="myprofile.php"><i class="fa fa-user"></i>
-                                    ข้อมูลส่วนตัว</a>
-                            </li>
-                             <li>
-                                <a role="menuitem" tabindex="-1" href="{{ route('logout') }} " onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i>
-                                    {{ __('ออกจากระบบ') }}</a>
-                            </li>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </ul>
-                </div>
-            </div>
-            <!-- end: search & user box -->
-        </header> --}}
-        <!-- end: header -->
-        {{-- <div class="inner-wrapper"> --}}
-            <!-- start: sidebar -->
-            {{-- <aside id="sidebar-left" class="sidebar-left">
-                <div class="sidebar-header">
-                    <div class="sidebar-title">
-                    </div>
-                    <div class="sidebar-toggle hidden-xs" data-toggle-class="sidebar-left-collapsed" data-target="html"
-                        data-fire-event="sidebar-left-toggle">
-                        <i class="fa fa-bars" aria-label="Toggle sidebar"></i>
-                    </div>
-                </div>
-                <div class="nano">
-                    <div class="nano-content">
-                        <nav id="menu" class="nav-main" role="navigation">
-                            <ul class="nav nav-main">
-                                <li class="nav-active">
-                                    <a href="index.php">
-                                        <img src='https://image.flaticon.com/icons/svg/609/609803.svg' width="21px"
-                                            height="21px">
-                                        <span>&nbsp;&nbsp;หน้าแรก</span>
-                                    </a>
-                                </li>
-                                <li class="nav-active">
-                                    <a href="tables_list.php">
-                                        <img src='https://image.flaticon.com/icons/svg/2535/2535554.svg' width="21px"
-                                            height="21px">
-                                        <span>&nbsp;&nbsp;ครุภัณฑ์</span>
-                                    </a>
-                                </li>
-                                <li class="nav-active">
-                                    <a href="rent_my.php">
-                                        <img src='https://image.flaticon.com/icons/svg/609/609753.svg' width="21px"
-                                            height="21px">
-                                        <span>&nbsp;&nbsp;รายการครุภัณฑ์ที่ยืม</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-parent">
-                                    <a>
-                                        <img src='https://image.flaticon.com/icons/svg/745/745437.svg' width="21px"
-                                            height="21px">
-                                        <span>&nbsp;&nbsp;งานซ่อม</span>
-                                    </a>
-                                    <ul class="nav nav-children">
-                                        <!-- <li>
-                                            <a href="#">
-                                                พัสดุของฉัน
-                                            </a>
-                                        </li> -->
-                                        <li>
-                                            <a href="repair_report.php">
-                                                แจ้งซ่อม
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="repair_follow.php">
-                                                ติดตามการสั่งซ่อมของฉัน
-                                            </a>
-                                        </li>
-                                        <!-- <li>
-                                            <a href="#">
-                                                รายการซ่อม
-                                            </a>
-                                        </li> -->
-                                    </ul>
-                                </li>
-
-
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </aside> --}}
-            <!-- end: sidebar -->
-
             @yield('body')
+
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+<!-- Date Table -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 
 
             <script>
                 $(document).ready(function () {
-                    //inialize datatable
-                    $('#myTable').DataTable({
+            $('#myTable').DataTable();
+        });
 
-                    });
 
-                    //hide alert
-                    $(document).on('click', '.close', function () {
-                        $('.alert').hide();
-                    })
-                });
+                //     //hide alert
+                //     $(document).on('click', '.close', function () {
+                //         $('.alert').hide();
+                //     })
+                // });
 
-                const currentLocation = location.href;
-                const menuItem = document.querySelectorAll('a');
-                const menuLength = menuItem.length
-                for (let i=0; i< menuLength ;i++){
+            //     const currentLocation = location.href;
+            //     const menuItem = document.querySelectorAll('a');
+            //     const menuLength = menuItem.length
+            //     for (let i=0; i< menuLength ;i++){
 
-              if(menuItem[i].href === currentLocation){
-                menuItem[i].className = "nav-link active"
-              }
-                }
+            //   if(menuItem[i].href === currentLocation){
+            //     menuItem[i].className = "nav-link active"
+            //   }
+            //     }
 
             </script>
 

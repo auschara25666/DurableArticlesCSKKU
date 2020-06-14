@@ -511,12 +511,14 @@
                                                     </div>
                                                     <div class='txt'> ชื่อผู้ใช้งาน : <b>{{ $list->user_id }}</b></div>
                                                     <input type="hidden" id="form" name="form" value="active">
-                                                    <div style='margin-left:180px;'>
+                                                    <div style='margin-left:120px;'>
                                                         <button type='submit' id='updateRoleBtn' name='updateRoleBtn'
                                                             class='btn btn-success'>อนุมัติ</button>
-                                                        <button type='button' class='btn btn-primary'
-                                                            data-toggle='modal' data-target='#DetailPersonnal'
-                                                            data-id="{{ $list->id }}">รายละเอียด</button>
+                                                        <a href="#DetailPersonnal{{ $list->id }}" data-toggle='modal'
+                                                            class='btn btn-primary'>รายละเอียด</a>
+                                                            <a href="{{ route('user.destroy',$list->id) }}"
+                                                            class='btn btn-danger'>ไม่อนุมัติ</a>
+
                                                     </div>
                                                 </div>
 
@@ -534,19 +536,131 @@
                                                     <div class='txt'> ชื่อผู้ใช้งาน : <b>{{ $list->user_id }}
                                                     </div>
                                                     <input type="hidden" id="form" name="form" value="active">
-                                                    <div style='margin-left:180px;'>
+                                                    <div style='margin-left:120px;'>
                                                         <button type='submit' id='updateRoleBtn' name='updateRoleBtn'
                                                             class='btn btn-success'>อนุมัติ</button>
-                                                        <button type='button' class='btn btn-primary'
-                                                            data-toggle='modal' data-target='#DetailStudent'
-                                                            data-id="{{ $list->id }}">รายละเอียด</button>
+                                                        <a href="#DetailStudent{{ $list->id }}" data-toggle='modal'
+                                                            class='btn btn-primary'>รายละเอียด</a>
+                                                        <a href="{{ route('user.destroy',$list->id) }}"
+                                                            class='btn btn-danger'>ไม่อนุมัติ</a>
                                                     </div>
                                                 </div>
 
                                                 @endif
 
                                             </form>
+                                            <div class=" modal fade" id="DetailPersonnal{{ $list->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                aria-hidden="true" data-backdrop="false"
+                                                style="background-color: rgba(0, 0, 0, 0.5);">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                รายละเอียดผู้ใช้งาน</h5>
+
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div>
+                                                                <div class="bio-content">
+                                                                    <div class="form-row">
+                                                                        <h2>{{ $list->name }}</h2>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <label>---------------------------------</label>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <h4>อีเมล : <span
+                                                                                style="color:blue;">{{ $list->email }}</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <h4>เบอร์โทรศัพท์ : <span
+                                                                                style="color:blue;">{{ $list->phone }}</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">ปิด</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" id="DetailStudent{{ $list->id }}" tabindex="-1"
+                                                role="dialog" aria-labelledby="exampleModalCenterTitle"
+                                                aria-hidden="true" data-backdrop="false"
+                                                style="background-color: rgba(0, 0, 0, 0.5);">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                            <h5 class="modal-title" id="exampleModalLongTitle">
+                                                                รายละเอียดผู้ใช้งาน</h5>
+
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div>
+                                                                <div class="bio-content">
+                                                                    <div class="form-row">
+                                                                        <h2>{{ $list->name }}</h2>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <label>---------------------------------</label>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <h4>รหัสนักศึกษา : <span
+                                                                                style="color:blue;">{{ $list->user_id }}</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <h4>อีเมล : <span
+                                                                                style="color:blue;">{{ $list->email }}</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <h4>เบอร์โทรศัพท์ : <span
+                                                                                style="color:blue;">{{ $list->phone }}</span>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <h4>นักศึกษาชั้นปีที่ : <span
+                                                                                style="color:blue;">{{ $list->col_year }}</span>
+                                                                        </h4>
+                                                                    </div><br>
+                                                                    <div class="form-row">
+                                                                        <h4>ระดับ
+                                                                            หลักสูตรวิชา{{ $list->department }}</h4>
+                                                                    </div>
+                                                                    <div class="form-row">
+                                                                        <h4>มหาวิทยาลัยขอนแก่น</h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-dismiss="modal">ปิด</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             @endforeach
+                                             @endif
                                         </div>
                                     </div>
                                 </div>
@@ -561,102 +675,7 @@
         <!-- /.container-fluid -->
     </nav>
 
-    {{-- <div class=" modal fade" id="DetailPersonnal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h5 class="modal-title" id="exampleModalLongTitle">
-                        รายละเอียดผู้ใช้งาน</h5>
 
-                </div>
-                <div class="modal-body">
-
-                    <div>
-                        <div class="bio-content">
-                            <div class="form-row">
-                                <h2>{{ $list->name }}</h2>
-                            </div>
-                            <div class="form-row">
-                                <label>---------------------------------</label>
-                            </div>
-                            <div class="form-row">
-                                <h4>อีเมล : <span style="color:blue;">{{ $list->email }}</span>
-                                </h4>
-                            </div>
-                            <div class="form-row">
-                                <h4>เบอร์โทรศัพท์ : <span style="color:blue;">{{ $list->phone }}</span>
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
-    {{-- <div class="modal fade" id="DetailStudent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true" data-backdrop="false" style="background-color: rgba(0, 0, 0, 0.5);">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h5 class="modal-title" id="exampleModalLongTitle">
-                        รายละเอียดผู้ใช้งาน</h5>
-
-                </div>
-                <div class="modal-body">
-
-                    <div>
-                        <div class="bio-content">
-                            <div class="form-row">
-                                <h2>{{ $list->name }}</h2>
-                            </div>
-                            <div class="form-row">
-                                <label>---------------------------------</label>
-                            </div>
-                            <div class="form-row">
-                                <h4>รหัสนักศึกษา : <span style="color:blue;">{{ $list->user_id }}</span>
-                                </h4>
-                            </div>
-                            <div class="form-row">
-                                <h4>อีเมล : <span style="color:blue;">{{ $list->email }}</span>
-                                </h4>
-                            </div>
-                            <div class="form-row">
-                                <h4>เบอร์โทรศัพท์ : <span style="color:blue;">{{ $list->phone }}</span>
-                                </h4>
-                            </div>
-                            <div class="form-row">
-                                <h4>นักศึกษาชั้นปีที่ : <span style="color:blue;">{{ $list->col_year }}</span>
-                                </h4>
-                            </div><br>
-                            <div class="form-row">
-                                <h4>ระดับ
-                                    หลักสูตรวิชา{{ $list->department }}</h4>
-                            </div>
-                            <div class="form-row">
-                                <h4>มหาวิทยาลัยขอนแก่น</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">ปิด</button>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-@endif
 
     <div class="container">
         @yield('body')

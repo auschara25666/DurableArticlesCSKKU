@@ -88,7 +88,7 @@ class CategoriesController extends Controller
         $request->validate([
             'categories_code' => 'required',
             'categories_name' => 'required',
-            'categories_status' => 'required'
+            'categories_status' => ''
         ]);
 
         $categories = Categories::find($id);
