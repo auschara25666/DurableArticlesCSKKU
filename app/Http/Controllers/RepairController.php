@@ -129,6 +129,7 @@ class RepairController extends Controller
             $repair->repair_status = $request->repair_status;
             $repair->repair_detail = $request->repair_detail;
             $repair->repair_etc = $request->repair_etc;
+            $repair->repair_admin = Auth::user()->id;
 
             $repair->save();
             return redirect()->back()->with('success', 'แก้ไข รายการซ่อม สำเร็จ !!');

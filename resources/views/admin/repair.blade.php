@@ -35,6 +35,7 @@
                                 <th>ลักษณะ/ยี่ห้อ</th>
                                 <th>ชื่อผู้แจ้งซ่อม</th>
                                 <th>คำอธิบาย</th>
+                                <th>ผู้ปฏิบัติงาน</th>
                                 <th>สถานะการซ่อม</th>
                                 <th style="width:20%;">ตัวเลือก</th>
                             </tr>
@@ -49,6 +50,11 @@
                                 <td>{{ $list->equipment->equipment_name }}</td>
                                 <td>{{ $list->user->name }}</td>
                                 <td>{{ $list->repair_detail }}</td>
+                                @if (is_null($list->admin))
+                                <td>-</td>
+                                @else
+                                <td>{{ $list->admin->name }}</td>
+                                @endif
                                 <td>
                                     @if ($list->repair_status == 0)
                                     <span

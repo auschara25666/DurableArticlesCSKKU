@@ -53,7 +53,11 @@
                             <tr>
                                 <td>{{ $list->equipment->equipment_name }}</td>
                                 <td>{{ \Carbon\Carbon::parse($list->created_at)->format('d/m/Y') }}</td>
+                                @if (is_null($list->admin))
                                 <td>-</td>
+                                @else
+                                <td>{{ $list->admin->name }}</td>
+                                @endif
                                 <td>
                                     @if ($list->repair_status == 0)
                                         <span

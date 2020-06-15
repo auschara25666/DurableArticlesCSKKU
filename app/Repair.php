@@ -11,7 +11,7 @@ class Repair extends Model
 
     protected $fillable = [
         'equipment_id', 'repair_detail', 'repair_etc', 'user_id', 'repair_active',
-        'repair_status', 'filenames'
+        'repair_status', 'filenames', 'repair_admin'
     ];
 
     public function equipment()
@@ -22,5 +22,9 @@ class Repair extends Model
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+    public function admin()
+    {
+        return $this->belongsTo('App\User', 'repair_admin');
     }
 }
