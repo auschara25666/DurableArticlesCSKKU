@@ -81,7 +81,7 @@
                             <div class="modal-body">
                                 <p>
                                     <center><img src="{{ asset('images/news/' .  $list->news_image ) }}"
-                                            style='height:150px; width:150px;'></center>
+                                            style='height:150px; width:250px;'></center>
                                 </p>
 
                                 <div class='well form-horizontal'>

@@ -56,7 +56,7 @@
                                     <option value="">** ไม่มีข้อมูลครุภัณฑ์ **</option>
                                     @else
                                     @foreach ($equipment2 as $list)
-                                    <option class="form-control" value="{{ $list->id }}">{{ $list->equipment_name }}
+                                    <option class="form-control" value="{{ $list->id }}">{{ $list->equipment_code }} : {{ $list->equipment_name }}
                                     </option>
                                     @endforeach
                                     @endif
@@ -69,7 +69,7 @@
                                     <option value="">** ไม่มีข้อมูลครุภัณฑ์ **</option>
                                     @else
                                     @foreach ($equipment as $list2)
-                                    <option class="form-control" value="{{ $list2->id }}">{{ $list2->equipment_name }}
+                                    <option class="form-control" value="{{ $list2->id }}">{{ $list2->equipment_code }} : {{ $list2->equipment_name }}
                                     </option>
                                     @endforeach
                                     @endif

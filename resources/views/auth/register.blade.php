@@ -39,7 +39,7 @@
                     <label for="email">{{ __('อีเมล *') }}</label>&nbsp;<span class="badge badge-info"
                         style="font-weight:normal;">(ใช้ @kku.ac.th เท่านั้น)</span>
                     <div class="input-group">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" OnInput="add_emailtec()"
                             name="email" value="{{ old('email') }}" placeholder="user@kku.ac.th" required
                             autocomplete="email">
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
@@ -175,8 +175,8 @@
                     <label for="email">{{ __('อีเมล *') }}</label>&nbsp;<span class="badge badge-info"
                         style="font-weight:normal;">(ใช้ @kkumail.com เท่านั้น)</span>
                     <div class="input-group">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
-                            name="email" value="{{ old('email') }}" placeholder="user@kkumail.com" required
+                        <input id="emails" type="email" class="form-control @error('emails') is-invalid @enderror" OnInput="add_emailstd()"
+                            name="email" value="{{ old('emails') }}" placeholder="user@kkumail.com" required
                             autocomplete="email">
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
                             else.</small> -->
@@ -184,7 +184,7 @@
                             <span class="input-group-text">@kkumail.com</span>
                         </div>
                     </div>
-                    @error('email')
+                    @error('emails')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -289,6 +289,18 @@
         if (str.length > 9) {
             str = str.substring(0, 9) + "-" + str.substring(9);
         }
+        input.value = str
+    }
+    function add_emailtec() {
+        var input = document.getElementById("email");
+        var str = input.value;
+        str = str.replace("@", "@kku.ac.th");
+        input.value = str
+    }
+    function add_emailstd() {
+        var input = document.getElementById("emails");
+        var str = input.value;
+        str = str.replace("@", "@kkumail.com");
         input.value = str
     }
 

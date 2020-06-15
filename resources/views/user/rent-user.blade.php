@@ -77,7 +77,7 @@
                                 <td>{{ $list->rent_etc }}</td>
                                 <td>
                                     <a href="#removeRentModal{{ $list->id }}" data-toggle="modal"
-                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ลบ</a>
+                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ยกเลิกการยืม</a>
                             </tr>
                             <!-- del repair -->
                             <div class="modal fade" id="removeRentModal{{ $list->id }}" aria-labelledby="myModalLabel"

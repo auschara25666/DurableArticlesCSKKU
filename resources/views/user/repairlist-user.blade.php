@@ -86,7 +86,7 @@
                                 </td>
                                 <td>
                                     <a href="#removeRepairModal{{ $list->id }}" data-toggle="modal"
-                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ลบ</a>
+                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ยกเลิกการซ่อม</a>
                                     <a href='#' class='btn btn-info' title='รายละเอียด' name='actionRepairFollow'
                                         data-toggle='modal'>
                                         <i class='fa fa-th-list' title='รายละเอียด'></i></a>
