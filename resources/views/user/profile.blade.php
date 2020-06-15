@@ -53,11 +53,11 @@
                                                 <label>---------------------------------</label>
                                             </div>
                                             <div class="form-row">
-                                                <h4>อีเมล : <span style="color:blue;"></span></h4>
+                                                <h4>อีเมล : <span style="color:blue;">{{ Auth::user()->email }}</span></h4>
                                             </div>
                                             <div class="form-row">
                                                 <h4>เบอร์โทรศัพท์ : <span
-                                                        style="color:blue;"></span></h4>
+                                                        style="color:blue;">{{ Auth::user()->phone }}</span></h4>
                                             </div>
                                         </div>
                                     </div>
