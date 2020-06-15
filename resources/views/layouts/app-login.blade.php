@@ -157,11 +157,6 @@
 
     @yield('body')
     <!--===============================================================================================-->
-    <script src="{{ asset('vendor/jquery/jquery-3.2.1.min.js') }}"></script>
-    <!--===============================================================================================-->
-    <script src="{{ asset('vendor/bootstrap/js/popper.js') }}"></script>
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <!--===============================================================================================-->
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
     <!--===============================================================================================-->
     <script src="{{ asset('js/main.js') }}"></script>
@@ -177,9 +172,6 @@
 
 
     <!-- Javascript -->
-    <script src="{{ asset('js/jquery-1.11.1.min.js') }}"></script>
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <!-- <script src="asset/js/jquery.backstretch.min.js"></script> -->
     <script src="{{ asset('js/scripts.js') }}"></script>
 
 </body>

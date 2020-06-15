@@ -62,10 +62,6 @@
                         <tbody>
                             @foreach ($categorieslist as $list)
                             <tr>
-                                {{-- <td><a
-                                        href="{{ route('equipment.show',[$categorieslist->id,$categorieslist->categories->id]) }}"><label
-                                    style="Font-weight:normal;font-size:15px;">{{ $categorieslist->list_title }}</label></a>
-                                </td> --}}
                                 <td><a href="/equipment/{{ $list->id }}/{{ $list->categories->id }}"><label
                                             style="Font-weight:normal;font-size:15px;">{{ $list->list_title }}</label></a>
                                 </td>
@@ -79,17 +75,7 @@
                                         class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i>แก้ไข</a>
                                     <a href="#removeCategorieslistModal{{ $list->id }}" data-toggle="modal"
                                         class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>ลบ</a>
-                                    {{-- <button type="button" class="btn btn-warning" data-id="{{ $list->id }}"
-                                    data-title="{{ $list->list_title }}"
-                                    data-price="{{ $list->list_price_per_unit }}" data-get="{{ $list->list_get }}"
-                                    data-fiscalyear="{{ $list->list_fiscalyear }}"
-                                    data-categories="{{ $list->categories->id }}" data-toggle="modal"
-                                    data-status="{{ $list->list_status }}" data-toggle="modal"
-                                    data-target="#editCategorieslistModal"> <i class="glyphicon glyphicon-edit"></i>
-                                    แก้ไข</button>
-                                    <button type="button" class="btn btn-danger" data-catid="{{ $list->id }}"
-                                        data-toggle="modal" data-target="#removeCategorieslistModal"> <i
-                                            class="glyphicon glyphicon-trash"></i> ลบ</button> --}}
+
                                 </td>
                             </tr>
                             <!-- edit categorieslist brand -->
@@ -261,7 +247,7 @@
                 <div class="modal-body">
 
                     <div id="add-categories-messages"></div>
-                    <input type="text" name="categories_id" id="categories_id" value="{{ $categories2 }}">
+                    <input type="hidden" name="categories_id" id="categories_id" value="{{ $categories2 }}">
                     <input type="hidden" name="list_status" id="list_status" value="1">
 
                     <div class="form-group">

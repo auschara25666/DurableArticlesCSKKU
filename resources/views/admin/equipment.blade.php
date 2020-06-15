@@ -73,7 +73,7 @@
                                     {{-- <td>{{ $equipment->pluck('equipment_code') }}</td> --}}
                                     <td>{{ $list->equipment_code }}</td>
                                     <td><img src="{{ asset('images/equipment/' . $list->equipment_image) }}"
-                                            style='height:50px; width:50px;'></td>
+                                            style='height:100px; width:100px;'></td>
                                     <td>{{ $list->equipment_name }}</td>
                                     <td>
                                         @if ($list->equipment_role == 1)

@@ -8,13 +8,11 @@
     <link href="https://fonts.googleapis.com/css?family=K2D&display=swap" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/ba8cda9d5b.js" crossorigin="anonymous"></script>
-    <!-- bootstrap -->
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <!-- bootstrap theme-->
-    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap-theme.min.css') }}">
-    <!-- font awesome -->
-    <link rel="stylesheet" href="{{ asset('font-awesome/css/font-awesome.min.css') }}">
-    <!-- <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css"> -->
+
+    {{-- boostarp 3 --}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <!-- custom css -->
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
@@ -22,35 +20,8 @@
     {{-- datatable --}}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
 
-
-    {{-- <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"> --}}
-
-
     <!-- file input -->
     <link rel="stylesheet" href="{{ asset('plugins/fileinput/css/fileinput.min.css') }}">
-
-    <!-- jquery -->
-    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-
-    <!-- jquery ui -->
-    <link rel="stylesheet" href="{{ asset('jquery-ui/jquery-ui.min.css') }}">
-    <script src="{{ asset('jquery-ui/jquery-ui.min.js') }}"></script>
-
-
-    <!-- bootstrap js -->
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <link rel="stylesheet" media="all" type="text/css" href="{{ asset('js/jquery-ui.css') }}" />
-    <link rel="stylesheet" media="all" type="text/css" href="{{ asset('jquery-ui-timepicker-addon.css') }}" />
-
-    <script type="text/javascript" src="{{ asset('js/jquery-1.10.2.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-ui.min.js') }}"></script>
-
-    <script type="text/javascript" src="{{ asset('jquery-ui-timepicker-addon.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/jquery-ui-sliderAccess.js') }}"></script>
-
-
 
 
     <style>
