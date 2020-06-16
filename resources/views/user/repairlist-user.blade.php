@@ -243,21 +243,7 @@
                                                             class="col">หมายเหตุ</div>
                                                     </div>
 
-                                                    {{-- @php
-                                                    $user = Auth::user()->id;
-                                                        $sql = "select * form repair_status where repair_id = $list->id and user = $user"
-                                                        $qurey =
-                                                    $repairstatus =
-                                                    \App\RepairStatus::where('repair_id',$list->id)->first();
-                                                    if (is_null($repairstatus)) {
-                                                        # code...
-                                                    } else {
-                                                        # code...
-                                                    }
-
-                                                    @endphp --}}
-
-                                                    {{-- @if (is_null($repairstatus)) --}}
+                                                    {{-- @if (is_null(RepairStatus::where('repair_id',$list->id)->first())) --}}
                                                     <div style='color:black;' class='row'>
                                                         @if (is_null($list->admin))
                                                         <div style='color:black; text-align:center;' class="col">

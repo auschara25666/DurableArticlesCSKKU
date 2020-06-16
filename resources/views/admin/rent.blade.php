@@ -98,22 +98,13 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <div id="edit-categories-messages"></div>
-
-                                                <div class="modal-loading div-hide"
-                                                    style="width:50px; margin:auto;padding-top:50px; padding-bottom:50px;">
-                                                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                                                    <span class="sr-only">Loading...</span>
-                                                </div>
-
-                                                <div class="edit-categories-result">
-
                                                     <input type="hidden" name="user_id" id="user_id"
                                                     value="{{ $list->user->id }}">
                                                     <input type="hidden" name="equipment_id" id="equipment_id"
                                                         value="{{ $list->equipment->id }}">
 
 
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="equipment_code"
                                                             class="col-sm-3 control-label">ครุภัณฑ์</label>
@@ -125,7 +116,9 @@
                                                                 autocomplete="off" readonly value="{{ $list->equipment->equipment_code }}">
                                                         </div>
                                                     </div>
-
+</div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="user" class="col-sm-3 control-label">
                                                             ชื่อผู้ยืม</label>
@@ -137,7 +130,9 @@
                                                                 readonly>
                                                         </div>
                                                     </div>
-
+</div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="rent_status"
                                                             class="col-sm-3 control-label">สถานะการยืม</label>
@@ -154,6 +149,9 @@
                                                             </select>
                                                         </div>
                                                     </div>
+                                                    </div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="rent_detail" class="col-sm-4 control-label">
                                                             วัตถุประสงค์ของผู้ยืม</label>
@@ -164,6 +162,9 @@
                                                                 autocomplete="off" value="{{ $list->rent_detail }}">
                                                         </div>
                                                     </div>
+                                                    </div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="comment_admin" class="col-sm-3 control-label">
                                                             หมายเหตุ</label>
@@ -174,6 +175,9 @@
                                                                 autocomplete="off" value="{{ $list->comment_admin }}">
                                                         </div>
                                                     </div>
+                                                    </div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="rent_date" class="col-sm-3 control-label">
                                                             วันที่ยืม</label>
@@ -184,6 +188,9 @@
                                                                 autocomplete="off" value="{{ $list->rent_date }}">
                                                         </div>
                                                     </div>
+                                                    </div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="rent_return_date_fix"
                                                             class="col-sm-3 control-label">
@@ -195,6 +202,9 @@
                                                                 name="rent_return_date_fix" autocomplete="off" value="{{ $list->rent_return_date_fix }}" min="{{ $list->rent_date }}">
                                                         </div>
                                                     </div>
+                                                    </div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="rent_return_date" class="col-sm-3 control-label">
                                                             วันที่ผู้ยืมคืน</label>
@@ -205,9 +215,7 @@
                                                                 name="rent_return_date" autocomplete="off" value="{{ $list->rent_return_date }}"  min="{{ $list->rent_date }}">
                                                         </div>
                                                     </div>
-
-                                                </div>
-                                                <!-- /edit brand result -->
+                                            </div>
 
                                             </div> <!-- /modal-body -->
 

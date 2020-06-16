@@ -88,16 +88,8 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
+<div class="row">
 
-                                                <div id="edit-categories-messages"></div>
-
-                                                <div class="modal-loading div-hide"
-                                                    style="width:50px; margin:auto;padding-top:50px; padding-bottom:50px;">
-                                                    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                                                    <span class="sr-only">Loading...</span>
-                                                </div>
-
-                                                <div class="edit-categories-result">
                                                     {{-- <input type="hidden" name="id" id="id" value=""> --}}
                                                     <input type="hidden" name="categories_status" id="categories_status"
                                                         value="1">
@@ -112,7 +104,9 @@
                                                                 autocomplete="off" value="{{ $list->categories_code }}">
                                                         </div>
                                                     </div>
-
+</div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="categories_name"
                                                             class="col-sm-4 control-label">ชื่อประเภทครุภัณฑ์</label>
@@ -123,10 +117,7 @@
                                                                 autocomplete="off" value="{{ $list->categories_name }}">
                                                         </div>
                                                     </div>
-
-                                                </div>
-                                                <!-- /edit brand result -->
-
+</div>
                                             </div> <!-- /modal-body -->
 
                                             <div class="modal-footer editCategoriesFooter">

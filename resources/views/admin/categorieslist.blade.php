@@ -96,7 +96,7 @@
                                             </div>
                                             <div class="modal-body">
 
-                                                <div class="edit-categories-result">
+<div class="row">
                                                     <input type="hidden" name="list_status" id="list_status" value="1">
 
                                                     <div class="form-group">
@@ -109,7 +109,9 @@
                                                                 autocomplete="off" value="{{ $list->list_title }}">
                                                         </div>
                                                     </div>
-
+</div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="list_price_per_unit"
                                                             class="col-sm-4 control-label">ราคา/หน่วย </label>
@@ -120,7 +122,9 @@
                                                                 name="list_price_per_unit" autocomplete="off" value="{{ $list->list_price_per_unit }}">
                                                         </div>
                                                     </div> <!-- /form-group-->
-
+</div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="list_get"
                                                             class="col-sm-4 control-label">วิธีการได้มา
@@ -133,7 +137,9 @@
                                                         </div>
                                                     </div> <!-- /form-group-->
 
-                                                    <div class="form-group">
+</div>
+<br>
+<div class="row">                                                    <div class="form-group">
                                                         <label for="list_fiscalyear"
                                                             class="col-sm-3 control-label">ปีงบประมาณ </label>
                                                         <label class="col-sm-1 control-label">: </label>
@@ -147,7 +153,9 @@
                                                             </select>
                                                         </div>
                                                     </div> <!-- /form-group-->
-
+</div>
+<br>
+<div class="row">
                                                     <div class="form-group">
                                                         <label for="categories_id"
                                                             class="col-sm-3 control-label">ประเภทครุภัฑณ์ </label>
@@ -164,9 +172,7 @@
                                                         </div>
                                                     </div>
 
-                                                </div>
-                                                <!-- /edit brand result -->
-
+</div>
                                             </div> <!-- /modal-body -->
 
                                             <div class="modal-footer editCategoriesFooter">
