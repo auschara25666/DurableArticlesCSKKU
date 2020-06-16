@@ -10,7 +10,7 @@ class Rent extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'user_id', 'equipment_id', 'rent_status', 'rent_etc', 'rent_report_date',
+        'user_id', 'equipment_id', 'rent_status', 'rent_detail', 'comment_admin', 'rent_report_date',
         'rent_date', 'rent_return_date_fix', 'rent_return_date'
     ];
 

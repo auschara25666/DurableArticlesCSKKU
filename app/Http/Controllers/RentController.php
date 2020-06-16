@@ -96,7 +96,8 @@ class RentController extends Controller
             'user_id' => 'required',
             'equipment_id' => 'required',
             'rent_status' => 'required',
-            'rent_etc' => '',
+            'rent_detail' => '',
+            'comment_admin' => '',
             'rent_date' => '',
             'rent_return_date_fix' => '',
             'rent_return_date' => '',
@@ -112,7 +113,8 @@ class RentController extends Controller
             $rent->user_id = $request->user_id;
             $rent->equipment_id = $request->equipment_id;
             $rent->rent_status = $request->rent_status;
-            $rent->rent_etc = $request->rent_etc;
+            $rent->rent_detail = $request->rent_detail;
+            $rent->comment_admin = $request->comment_admin;
             $rent->rent_date = $request->rent_date;
             $rent->rent_return_date_fix = $request->rent_return_date_fix;
             $rent->rent_return_date = $request->rent_return_date;

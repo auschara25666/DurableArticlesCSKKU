@@ -31,7 +31,7 @@
                                 <th id="th_css">รหัสครุภัณฑ์</th>
                                 <th id="th_css">ลักษณะ/ยี่ห้อ</th>
                                 <th id="th_css">สถานะการยืม</th>
-                                {{-- <th id="th_css">วัตถุประสงค์</th> --}}
+                                <th id="th_css">วัตถุประสงค์</th>
                                 <th id="th_css">หมายเหตุ</th>
                                 <th id="th_css">ตัวเลือก</th>
                             </tr>
@@ -74,7 +74,8 @@
                                                         style='font-size:16px;font-weight: normal; background:#ff6ff0;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ยกเลิกการยืม</label>
                                                         @endif
                                 </td>
-                                <td>{{ $list->rent_etc }}</td>
+                                <td>{{ $list->rent_detail }}</td>
+                                <td>{{ $list->comment_admin }}</td>
                                 <td>
                                     <a href="#removeRentModal{{ $list->id }}" data-toggle="modal"
                                         class="btn btn-danger"><i class="fa fa-trash-alt"></i>ยกเลิกการยืม</a>

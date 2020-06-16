@@ -80,8 +80,6 @@
                                             class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i>แก้ไข</a>
                                         <a href="#removeRentModal{{ $list->id }}" data-toggle="modal"
                                             class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>ลบ</a>
-
-
                                 </td>
                             </tr>
                             <!-- edit rent brand -->
@@ -157,13 +155,23 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="rent_etc" class="col-sm-3 control-label">
+                                                        <label for="rent_detail" class="col-sm-4 control-label">
+                                                            วัตถุประสงค์ของผู้ยืม</label>
+                                                        <label class="col-sm-1 control-label">: </label>
+                                                        <div class="col-sm-6">
+                                                            <input type="text" class="form-control" id="rent_detail"
+                                                                placeholder="รายละเอียดเพิ่มเติม.." name="rent_detail"
+                                                                autocomplete="off" value="{{ $list->rent_detail }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="comment_admin" class="col-sm-3 control-label">
                                                             หมายเหตุ</label>
                                                         <label class="col-sm-1 control-label">: </label>
                                                         <div class="col-sm-7">
-                                                            <input type="text" class="form-control" id="rent_etc"
-                                                                placeholder="รายละเอียดเพิ่มเติม.." name="rent_etc"
-                                                                autocomplete="off" value="{{ $list->rent_etc }}">
+                                                            <input type="text" class="form-control" id="comment_admin"
+                                                                placeholder="รายละเอียดเพิ่มเติม.." name="comment_admin"
+                                                                autocomplete="off" value="{{ $list->comment_admin }}">
                                                         </div>
                                                     </div>
                                                     <div class="form-group">

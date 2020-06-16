@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Equipment;
 use App\Repair;
 use App\RepairImage;
+use App\RepairStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,22 +48,23 @@ class RepairController extends Controller
             'filenames' => '',
             'filenames.*' => 'mimes:png,jpeg'
         ]);
-
+        // dd($request->filenames);
 
 
 
         if ($request->hasfile('filenames')) {
             foreach ($request->file('filenames') as $file) {
-                $imageName = time() . '.' . $file->extension();
+                $imageName = $file->getClientOriginalName();
                 $file->move(public_path() . '/images/repair/', $imageName);
                 $data[] = $imageName;
             }
         }
-
+        // dd($data);
         $repair = new Repair([
             'equipment_id' => $request->equipment_id,
             'repair_detail' => $request->repair_detail,
             'repair_etc' => $request->repair_etc,
+            'comment' => $request->repair_etc,
             'user_id' => Auth::user()->id,
             'filenames' => json_encode($data)
         ]);
@@ -114,14 +116,11 @@ class RepairController extends Controller
         if ($request->repair_status == 3 || $request->repair_status == 5 || $request->repair_status == 6) {
             // dd('456');
             $repair = Repair::find($id)->delete();
-            // $repair->repair_status = $request->repair_status;
-            // $repair->repair_detail = $request->repair_detail;
-            // $repair->repair_etc = $request->repair_etc;
 
             $equipment = Equipment::find($request->equipment_id);
             $equipment->equipment_status = 1;
             $equipment->save();
-            // $repair->save();
+
             return redirect()->back()->with('success', 'ทำการซ่อม สำเร็จ !!');
         } else {
             // dd('123');
@@ -129,7 +128,16 @@ class RepairController extends Controller
             $repair->repair_status = $request->repair_status;
             $repair->repair_detail = $request->repair_detail;
             $repair->repair_etc = $request->repair_etc;
+            $repair->comment = $request->comment;
             $repair->repair_admin = Auth::user()->id;
+
+            $repairstatus = new RepairStatus([
+                'repair_id' => $id,
+                'user' => $repair->user,
+                'admin' => Auth::user()->id,
+                'status' => $request->repair_status,
+                'comment' => $request->comment
+            ]);
 
             $repair->save();
             return redirect()->back()->with('success', 'แก้ไข รายการซ่อม สำเร็จ !!');

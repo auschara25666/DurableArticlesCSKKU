@@ -14,6 +14,7 @@
 use App\Equipment;
 use App\Rent;
 use App\Repair;
+use App\RepairStatus;
 use Facade\FlareClient\View;
 use Illuminate\Support\Facades\Auth;
 

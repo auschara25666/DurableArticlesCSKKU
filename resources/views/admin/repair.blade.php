@@ -108,7 +108,7 @@
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขยกเลิกรายการซ่อม
+                                                <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขรายการซ่อม
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
@@ -224,13 +224,13 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="repair_etc" class="col-sm-3 control-label">
+                                                    <label for="comment" class="col-sm-3 control-label">
                                                         หมายเหตุ</label>
                                                     <label class="col-sm-1 control-label">: </label>
                                                     <div class="col-sm-7">
-                                                        <input type="text" class="form-control" id="repair_etc"
-                                                            placeholder="รายละเอียดเพิ่มเติม.." name="repair_etc"
-                                                            autocomplete="off" value="{{ $list->repair_etc }}">
+                                                        <input type="text" class="form-control" id="comment"
+                                                            placeholder="รายละเอียดเพิ่มเติม.." name="comment"
+                                                            autocomplete="off" value="{{ $list->comment }}">
                                                     </div>
                                                 </div>
 
