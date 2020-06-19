@@ -108,14 +108,15 @@
                             <div class="modal-body">
                                 <p>
                                     <center><img src="{{ asset('images/news/' .  $list->news_image ) }}"
-                                            style='height:150px; width:250px;'></center>
+                                            style='height:200px; width:550px;'></center>
                                 </p>
 
                                 <div class='well form-horizontal'>
-                                    <div><label  style="font-size: 16px">หัวข้อ : &nbsp;&nbsp;&nbsp; <b>{{ $list->news_title }}</b> </label></div>
-                                    <div><label  style="font-size: 16px">รายละเอียด : &nbsp;&nbsp;&nbsp; <b>{{ $list->news_detail }}</b> </label></div>
-                                    <div><label  style="font-size: 16px">ผู้ประกาศ : &nbsp;&nbsp;&nbsp; <b>{{ $list->news_create }}</b> </label></div>
-                                    <div><label  style="font-size: 16px">วันที่ประกาศ : &nbsp;&nbsp;&nbsp; <b>{{ \Carbon\Carbon::parse($list->created_at)->format('d/m/Y') }}</b> </label></div>
+                                    <div><label  style="font-size: 16px">หัวข้อ : </label>&nbsp;<label style="font-size: 14px;color: darkblue">{{ $list->news_title }}</label></div>
+                                    <div><label  style="font-size: 16px">รายละเอียด : </label>&nbsp;<label style="font-size: 14px;color: darkblue">{{ $list->news_detail }}</label></div>
+                                    <div><label  style="font-size: 16px">ผู้ประกาศ : </label>&nbsp;<label style="font-size: 14px;color: darkblue">{{ $list->news_create }}</label></div>
+                                    <div><label  style="font-size: 16px">วันที่ประกาศ : </label>&nbsp;<label style="font-size: 14px;color: darkblue">{{ \Carbon\Carbon::parse($list->created_at)->format('d/m/Y') }}</label></div>
+
 
 
                                 </div>
