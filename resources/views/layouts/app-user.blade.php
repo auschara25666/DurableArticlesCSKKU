@@ -21,6 +21,7 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
+
   <!-- Data Table -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
@@ -89,7 +90,7 @@
       text-decoration: none;
       font-size: 15px;
       display: block;
-      padding: 20px 20px;
+      padding: 15px 15px;
       transition-duration: 0.6s;
       transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
       position: relative;
