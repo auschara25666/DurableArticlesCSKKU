@@ -612,7 +612,7 @@
                                                                         </h4>
                                                                     </div><br>
                                                                     <div class="form-row">
-                                                                        <h4>ระดับ
+                                                                        <h4>ระดับ{{ $list->degree }}
                                                                             หลักสูตรวิชา{{ $list->department }}</h4>
                                                                     </div>
                                                                     <div class="form-row">

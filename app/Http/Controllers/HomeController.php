@@ -48,7 +48,7 @@ class HomeController extends Controller
                 }
             } elseif (Auth::user()->user_status == 0) {
                 Auth::logout();
-                return redirect()->back()->with('message', 'กรุณารอ การยืนยันการสมัคร จากแอดมิน!!');
+                return redirect()->route('login')->with('message', 'กรุณารอ การยืนยันการสมัคร จากแอดมิน!!');
             }
         } else {
             return redirect()->back()->with('message', 'Username หรือ Password ไม่ถูกต้อง!! กรุณาตรวจสอบอีกครั้ง!!');
