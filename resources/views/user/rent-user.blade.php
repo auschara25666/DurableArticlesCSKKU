@@ -26,14 +26,14 @@
                         <thead>
                             <tr>
                                 <!-- <th id="th_css">ลำดับ</th> -->
-                                <th id="th_css">ชื่อผู้ยืม</th>
-                                <th id="th_css">รูปภาพ</th>
-                                <th id="th_css">รหัสครุภัณฑ์</th>
-                                <th id="th_css">ลักษณะ/ยี่ห้อ</th>
-                                <th id="th_css">สถานะการยืม</th>
-                                <th id="th_css">วัตถุประสงค์</th>
-                                <th id="th_css">หมายเหตุ</th>
-                                <th id="th_css">ตัวเลือก</th>
+                                <th style="width: 20%">ชื่อผู้ยืม</th>
+                                <th>รูปภาพ</th>
+                                <th style="width: 12%">รหัสครุภัณฑ์</th>
+                                <th style="width: 20%">ลักษณะ/ยี่ห้อ</th>
+                                <th style="width: 20%">สถานะการยืม</th>
+                                <th>วัตถุประสงค์</th>
+                                <th>หมายเหตุ</th>
+                                <th>ตัวเลือก</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,7 +42,7 @@
                             @else
                             @foreach ($rent as $list)
                             <tr>
-                                <td>{{ $list->user->name }}</td>
+                                <td style="font-size:14px;">{{ $list->user->name }}</td>
                                 <td><img src="{{ asset('images/equipment/' . $list->equipment->equipment_image) }}"
                                         style='height:100px; width:100px;'></td>
                                 <td>{{ $list->equipment->equipment_code }}</td>
@@ -50,28 +50,28 @@
                                 <td>
                                     @if ($list->rent_status == 0)
                                     <span
-                                        style='font-size:16px;font-weight: normal; background:#660000;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>แจ้งยืม
+                                        style='font-size:14px;font-weight: normal; background:#660000;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>แจ้งยืม
                                         (รออนุมัติ)</span>
                                     @endif
                                     @if ($list->rent_status == 1)
                                     <span
-                                        style='font-size:16px;font-weight: normal; background:#120eeb;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>อนุมัติแล้ว</label>
+                                        style='font-size:14px;font-weight: normal; background:#120eeb;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>อนุมัติแล้ว</label>
                                         @endif
                                         @if ($list->rent_status == 2)
                                         <span
-                                            style='font-size:16px;font-weight: normal; background:#d940ff;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ไม่อนุมัติ</label>
+                                            style='font-size:14px;font-weight: normal; background:#d940ff;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ไม่อนุมัติ</label>
                                             @endif
                                             @if ($list->rent_status == 3)
                                             <span
-                                                style='font-size:16px;font-weight: normal; background:#06d628;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>กำลังยืม</label>
+                                                style='font-size:14px;font-weight: normal; background:#06d628;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>กำลังยืม</label>
                                                 @endif
                                                 @if ($list->rent_status == 4)
                                                 <span
-                                                    style='font-size:16px;font-weight: normal; background:#ff0000;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ส่งคืนแล้ว</label>
+                                                    style='font-size:14px;font-weight: normal; background:#ff0000;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ส่งคืนแล้ว</label>
                                                     @endif
                                                     @if ($list->rent_status == 5)
                                                     <span
-                                                        style='font-size:16px;font-weight: normal; background:#ff6ff0;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ยกเลิกการยืม</label>
+                                                        style='font-size:14px;font-weight: normal; background:#ff6ff0;padding: .2em .6em .3em;display: inline;border-radius: .25em;color: #ffffff;'>ยกเลิกการยืม</label>
                                                         @endif
                                 </td>
                                 <td>{{ $list->rent_detail }}</td>

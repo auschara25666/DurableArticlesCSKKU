@@ -231,10 +231,10 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="rent_etc" style="color:black;font-size:15px;">
+                                                        <label for="rent_detail" style="color:black;font-size:15px;">
                                                             วัตถุประสงค์ในการยืม</label>
-                                                        <input type="text" class="form-control" id="rent_etc"
-                                                            placeholder="รายละเอียดเพิ่มเติม.." name="rent_etc"
+                                                        <input type="text" class="form-control" id="rent_detail"
+                                                            placeholder="รายละเอียดเพิ่มเติม.." name="rent_detail"
                                                             autocomplete="off" required>
                                                     </div>
                                                     <input type="hidden" id="user_id" name="user_id"
@@ -437,10 +437,10 @@
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="rent_etc" style="color:black;font-size:15px;">
+                                                        <label for="rent_detail" style="color:black;font-size:15px;">
                                                             วัตถุประสงค์ในการยืม</label>
-                                                        <input type="text" class="form-control" id="rent_etc"
-                                                            placeholder="รายละเอียดเพิ่มเติม.." name="rent_etc"
+                                                        <input type="text" class="form-control" id="rent_detail"
+                                                            placeholder="รายละเอียดเพิ่มเติม.." name="rent_detail"
                                                             autocomplete="off" required>
                                                     </div>
                                                     <input type="hidden" id="user_id" name="user_id"
