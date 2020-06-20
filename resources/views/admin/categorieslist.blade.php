@@ -96,7 +96,7 @@
                                             </div>
                                             <div class="modal-body">
 
-<div class="row">
+                                                <div class="row">
                                                     <input type="hidden" name="list_status" id="list_status" value="1">
 
                                                     <div class="form-group">
@@ -109,9 +109,9 @@
                                                                 autocomplete="off" value="{{ $list->list_title }}">
                                                         </div>
                                                     </div>
-</div>
-<br>
-<div class="row">
+                                                </div>
+                                                <br>
+                                                <div class="row">
                                                     <div class="form-group">
                                                         <label for="list_price_per_unit"
                                                             class="col-sm-4 control-label">ราคา/หน่วย </label>
@@ -119,12 +119,13 @@
                                                         <div class="col-sm-7">
                                                             <input type="text" class="form-control"
                                                                 id="list_price_per_unit" placeholder="ราคาต่อหน่วย"
-                                                                name="list_price_per_unit" autocomplete="off" value="{{ $list->list_price_per_unit }}">
+                                                                name="list_price_per_unit" autocomplete="off"
+                                                                value="{{ $list->list_price_per_unit }}">
                                                         </div>
                                                     </div> <!-- /form-group-->
-</div>
-<br>
-<div class="row">
+                                                </div>
+                                                <br>
+                                                <div class="row">
                                                     <div class="form-group">
                                                         <label for="list_get"
                                                             class="col-sm-4 control-label">วิธีการได้มา
@@ -137,9 +138,10 @@
                                                         </div>
                                                     </div> <!-- /form-group-->
 
-</div>
-<br>
-<div class="row">                                                    <div class="form-group">
+                                                </div>
+                                                <br>
+                                                <div class="row">
+                                                    <div class="form-group">
                                                         <label for="list_fiscalyear"
                                                             class="col-sm-3 control-label">ปีงบประมาณ </label>
                                                         <label class="col-sm-1 control-label">: </label>
@@ -147,15 +149,16 @@
                                                             <select class="form-control" id="list_fiscalyear"
                                                                 name="list_fiscalyear">
                                                                 @for ($i = 2500; $i < 2600; $i++) <option
-                                                                    value="{{ $i }}" {{ $list->list_fiscalyear == $i  ? 'selected' : ''}}>
+                                                                    value="{{ $i }}"
+                                                                    {{ $list->list_fiscalyear == $i  ? 'selected' : ''}}>
                                                                     {{ $i }}</option>
                                                                     @endfor
                                                             </select>
                                                         </div>
                                                     </div> <!-- /form-group-->
-</div>
-<br>
-<div class="row">
+                                                </div>
+                                                <br>
+                                                <div class="row">
                                                     <div class="form-group">
                                                         <label for="categories_id"
                                                             class="col-sm-3 control-label">ประเภทครุภัฑณ์ </label>
@@ -164,7 +167,8 @@
                                                             <select class="form-control" name="categories_id"
                                                                 id="categories_id">
                                                                 @foreach ($categories as $item)
-                                                                <option value="{{ $item->id }}"  {{ $list->categories->categories_id == $item->id  ? 'selected' : ''}}>
+                                                                <option value="{{ $item->id }}"
+                                                                    {{ $list->categories->categories_id == $item->id  ? 'selected' : ''}}>
                                                                     {{ $item->categories_code }} :
                                                                     {{ $item->categories_name }}</option>
                                                                 @endforeach
@@ -172,7 +176,7 @@
                                                         </div>
                                                     </div>
 
-</div>
+                                                </div>
                                             </div> <!-- /modal-body -->
 
                                             <div class="modal-footer editCategoriesFooter">
@@ -194,124 +198,125 @@
                             </div>
                             <!-- /modal-dailog -->
 
-                <!-- /categorieslist brand -->
+                            <!-- /categorieslist brand -->
 
-                <!-- categories brand -->
-                <div class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" role="dialog"
-                    id="removeCategorieslistModal{{ $list->id }}">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i> ลบรายการครุภัณฑ์</h4>
+                            <!-- categories brand -->
+                            <div class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" role="dialog"
+                                id="removeCategorieslistModal{{ $list->id }}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i>
+                                                ลบรายการครุภัณฑ์</h4>
+                                        </div>
+                                        <form action="{{ route('categorieslist.destroy',$list->id) }}" method="POST">
+                                            @csrf
+                                            {{method_field('delete')}}
+                                            <div class="modal-body">
+                                                <p>คุณแน่ใจว่าจะลบ ?</p>
+                                            </div>
+                                            <div class="modal-footer removeCategoriesFooter">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal"> <i
+                                                        class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
+                                                <button type="submit" class="btn btn-primary" id="removeCategoriesBtn"
+                                                    data-loading-text="Loading...">
+                                                    <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
+                                            </div>
+                                        </form>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                            </div><!-- /.modal -->
+                            <!-- /categories brand -->
+
+                            @endforeach
+                            @endif
+                        </tbody>
+
+                    </table>
+                    <!-- /table -->
+
+                </div> <!-- /panel-body -->
+            </div> <!-- /panel -->
+        </div> <!-- /col-md-12 -->
+    </div> <!-- /row -->
+
+    <!-- add categorieslist -->
+    <div class="modal fade" aria-labelledby="myModalLabel" id="addCategorieslistModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <form class="form-horizontal" id="submitCategorieslistForm" action="{{ route('categorieslist.store') }}"
+                    method="post">
+                    @csrf
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title"><i class="fa fa-plus"></i> เพิ่มรายการครุภัณฑ์</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <div id="add-categories-messages"></div>
+                        <input type="hidden" name="categories_id" id="categories_id" value="{{ $categories2 }}">
+                        <input type="hidden" name="list_status" id="list_status" value="1">
+
+                        <div class="form-group">
+                            <label for="list_title" class="col-sm-4 control-label">ชื่อรายการ </label>
+                            <label class="col-sm-1 control-label">: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="list_title" placeholder="ชื่อรายการ"
+                                    name="list_title" autocomplete="off">
                             </div>
-                            <form action="{{ route('categorieslist.destroy',$list->id) }}" method="POST">
-                                @csrf
-                                {{method_field('delete')}}
-                                <div class="modal-body">
-                                    <p>คุณแน่ใจว่าจะลบ ?</p>
-                                </div>
-                                <div class="modal-footer removeCategoriesFooter">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal"> <i
-                                            class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
-                                    <button type="submit" class="btn btn-primary" id="removeCategoriesBtn"
-                                        data-loading-text="Loading...">
-                                        <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
-                                </div>
-                            </form>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
-                </div><!-- /.modal -->
-                <!-- /categories brand -->
+                        </div> <!-- /form-group-->
 
-                @endforeach
-                @endif
-                </tbody>
+                        <div class="form-group">
+                            <label for="list_price_per_unit" class="col-sm-4 control-label">ราคา/หน่วย </label>
+                            <label class="col-sm-1 control-label">: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="list_price_per_unit"
+                                    placeholder="ราคาต่อหน่วย" name="list_price_per_unit" autocomplete="off">
+                            </div>
+                        </div> <!-- /form-group-->
 
-                </table>
-                <!-- /table -->
+                        <div class="form-group">
+                            <label for="list_get" class="col-sm-4 control-label">วิธีการได้มา </label>
+                            <label class="col-sm-1 control-label">: </label>
+                            <div class="col-sm-7">
+                                <input type="text" class="form-control" id="list_get" placeholder="เช่น สอบราคา"
+                                    name="list_get" autocomplete="off">
+                            </div>
+                        </div> <!-- /form-group-->
 
-            </div> <!-- /panel-body -->
-        </div> <!-- /panel -->
-    </div> <!-- /col-md-12 -->
-</div> <!-- /row -->
+                        <div class="form-group">
+                            <label for="list_fiscalyear" class="col-sm-3 control-label">ปีงบประมาณ </label>
+                            <label class="col-sm-1 control-label">: </label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="list_fiscalyear" name="list_fiscalyear">
+                                    <option value="">~~เลือก~~</option>
+                                    @for ($i = 2500; $i < 2600; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                        @endfor
+                                </select>
+                            </div>
+                        </div> <!-- /form-group-->
 
-<!-- add categorieslist -->
-<div class="modal fade" aria-labelledby="myModalLabel" id="addCategorieslistModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+                    </div> <!-- /modal-body -->
+                    <div class="modal-footer">
+                        <button type="button" id="clostAddCate" class="btn btn-default" data-dismiss="modal"> <i
+                                class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
 
-            <form class="form-horizontal" id="submitCategorieslistForm" action="{{ route('categorieslist.store') }}"
-                method="post">
-                @csrf
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title"><i class="fa fa-plus"></i> เพิ่มรายการครุภัณฑ์</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div id="add-categories-messages"></div>
-                    <input type="hidden" name="categories_id" id="categories_id" value="{{ $categories2 }}">
-                    <input type="hidden" name="list_status" id="list_status" value="1">
-
-                    <div class="form-group">
-                        <label for="list_title" class="col-sm-4 control-label">ชื่อรายการ </label>
-                        <label class="col-sm-1 control-label">: </label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="list_title" placeholder="ชื่อรายการ"
-                                name="list_title" autocomplete="off">
-                        </div>
-                    </div> <!-- /form-group-->
-
-                    <div class="form-group">
-                        <label for="list_price_per_unit" class="col-sm-4 control-label">ราคา/หน่วย </label>
-                        <label class="col-sm-1 control-label">: </label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="list_price_per_unit" placeholder="ราคาต่อหน่วย"
-                                name="list_price_per_unit" autocomplete="off">
-                        </div>
-                    </div> <!-- /form-group-->
-
-                    <div class="form-group">
-                        <label for="list_get" class="col-sm-4 control-label">วิธีการได้มา </label>
-                        <label class="col-sm-1 control-label">: </label>
-                        <div class="col-sm-7">
-                            <input type="text" class="form-control" id="list_get" placeholder="เช่น สอบราคา"
-                                name="list_get" autocomplete="off">
-                        </div>
-                    </div> <!-- /form-group-->
-
-                    <div class="form-group">
-                        <label for="list_fiscalyear" class="col-sm-3 control-label">ปีงบประมาณ </label>
-                        <label class="col-sm-1 control-label">: </label>
-                        <div class="col-sm-8">
-                            <select class="form-control" id="list_fiscalyear" name="list_fiscalyear">
-                                <option value="">~~เลือก~~</option>
-                                @for ($i = 2500; $i < 2600; $i++) <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
-                            </select>
-                        </div>
-                    </div> <!-- /form-group-->
-
-                </div> <!-- /modal-body -->
-                <div class="modal-footer">
-                    <button type="button" id="clostAddCate" class="btn btn-default" data-dismiss="modal"> <i
-                            class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
-
-                    <button type="submit" class="btn btn-primary" data-loading-text="Loading..." autocomplete="off">
-                        <i class="glyphicon glyphicon-ok-sign"></i>
-                        บันทึก</button>
-                </div> <!-- /modal-footer -->
-            </form> <!-- /.form -->
-        </div> <!-- /modal-content -->
-    </div> <!-- /modal-dailog -->
-</div>
-<!-- /add categorieslist -->
+                        <button type="submit" class="btn btn-primary" data-loading-text="Loading..." autocomplete="off">
+                            <i class="glyphicon glyphicon-ok-sign"></i>
+                            บันทึก</button>
+                    </div> <!-- /modal-footer -->
+                </form> <!-- /.form -->
+            </div> <!-- /modal-content -->
+        </div> <!-- /modal-dailog -->
+    </div>
+    <!-- /add categorieslist -->
 
 
-{{-- <script>
+    {{-- <script>
     $('#editCategorieslistModal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
@@ -341,4 +346,4 @@
 
 </script> --}}
 
-@endsection
+    @endsection

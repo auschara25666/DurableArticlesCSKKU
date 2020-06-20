@@ -15,9 +15,6 @@
             </div>  -->
             <!-- /panel-heading -->
             <div class="div-action pull" style="padding-bottom:5px;" align="right">
-                {{-- <button class="btn btn-success button1" data-toggle="modal" id="#addCategoriesModalBtn"
-                        data-target="addCategoriesModal"> <i class="glyphicon glyphicon-plus-sign"></i>
-                        เพิ่มประเภทครุภัณฑ์ </button> --}}
                 <button class="btn btn-success button1" data-toggle="modal" data-target="#addCategoriesModal"><i
                         class="glyphicon glyphicon-plus-sign"></i> เพิ่มประเภทครุภัณฑ์</button>
             </div> <!-- /div-action -->
@@ -43,8 +40,6 @@
                 </div><br />
                 @endif
 
-
-
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered" id="myTable" align="center">
                         <thead class="thead-dark">
@@ -65,9 +60,10 @@
                                             style="Font-weight:normal;font-size:15px;">{{ $list->categories_name }}</label></a>
                                 </td>
                                 <td>
-                                    <a href="#editCategoriesModal{{ $list->id }}" data-toggle="modal" class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i>แก้ไข</a>
-                                    <a href="#removeCategoriesModal{{ $list->id }}" data-toggle="modal" class="btn btn-danger"><i
-                                            class="glyphicon glyphicon-trash"></i>ลบ</a>
+                                    <a href="#editCategoriesModal{{ $list->id }}" data-toggle="modal"
+                                        class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i>แก้ไข</a>
+                                    <a href="#removeCategoriesModal{{ $list->id }}" data-toggle="modal"
+                                        class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>ลบ</a>
 
                                 </td>
                             </tr>
@@ -88,7 +84,7 @@
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
-<div class="row">
+                                                <div class="row">
 
                                                     {{-- <input type="hidden" name="id" id="id" value=""> --}}
                                                     <input type="hidden" name="categories_status" id="categories_status"
@@ -104,9 +100,9 @@
                                                                 autocomplete="off" value="{{ $list->categories_code }}">
                                                         </div>
                                                     </div>
-</div>
-<br>
-<div class="row">
+                                                </div>
+                                                <br>
+                                                <div class="row">
                                                     <div class="form-group">
                                                         <label for="categories_name"
                                                             class="col-sm-4 control-label">ชื่อประเภทครุภัณฑ์</label>
@@ -117,7 +113,7 @@
                                                                 autocomplete="off" value="{{ $list->categories_name }}">
                                                         </div>
                                                     </div>
-</div>
+                                                </div>
                                             </div> <!-- /modal-body -->
 
                                             <div class="modal-footer editCategoriesFooter">

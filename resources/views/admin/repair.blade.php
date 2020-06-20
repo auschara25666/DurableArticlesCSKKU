@@ -37,7 +37,7 @@
                                 <th>คำอธิบาย</th>
                                 <th>ผู้ปฏิบัติงาน</th>
                                 <th>สถานะการซ่อม</th>
-                                <th style="width:20%;">ตัวเลือก</th>
+                                <th style="width:25%;">ตัวเลือก</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,27 +91,150 @@
                                             class="btn btn-warning"><i class="glyphicon glyphicon-edit"></i>แก้ไข</a>
                                         <a href="#removeRepairModal{{ $list->id }}" data-toggle="modal"
                                             class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i>ลบ</a>
+                                        <a href='#showdetail{{$list->id}}' class='btn btn-info' title='รายละเอียด'
+                                            name='actionRepairFollow' data-toggle='modal'>
+                                            <i class='fa fa-th-list' title='รายละเอียด'></i>รายละเอียด</a>
 
                                     </div>
                                 </td>
                             </tr>
-                            <!-- edit repair -->
-                            <div class="modal fade" id="editRepairModal{{ $list->id }}" aria-labelledby="myModalLabel"
-                                tabindex="-1" role="dialog">
+
+
+
+                            {{-- view repair --}}
+                            <div id="showdetail{{$list->id}}" class="modal fade" role="dialog" tabindex="-1"
+                                aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
+                                        <div class="modal-header">
+                                            {{-- <h5 class='modal-title' id='myModalLabel'>รายละเอียดเพิ่มเติม</h5> --}}
+                                            <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                                <span aria-hidden='true'>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
 
-                                        <form class="form-horizontal" action="{{ route('repair.update',$list->id) }}"
-                                            method="POST">
-                                            @csrf
-                                            {{ method_field('patch') }}
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขรายการซ่อม
-                                                </h4>
+                                            <div class=''>
+                                                <fieldset>
+                                                    <legend>รายละเอียดของ ผู้แจ้งซ่อม</legend>
+                                                    <div class="well form-horizontal">
+                                                        <div class="container">
+                                                            <div class="row">
+
+                                                                <div class="col-2">
+                                                                    <span style='color:black;font-weight:bold;'>&nbsp;
+                                                                        ชื่อ - นามสกุล :</span>&nbsp;
+                                                                    <span
+                                                                        style='color:black;'>{{ $list->user->name }}</span>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-2">
+                                                                    <span style='color:black;font-weight:bold;'> &nbsp;
+                                                                        โทรศัพท์ :</span>&nbsp;<span
+                                                                        style='color:black;'>{{ $list->user->phone }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+
                                             </div>
-                                            <div class="modal-body">
+
+                                            <div class=''>
+                                                <fieldset>
+                                                    <legend>รายละเอียดการซ่อม</legend>
+                                                    <div class="well form-horizontal">
+                                                        <div class="container">
+
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <span style='color:black;font-weight:bold;'> &nbsp;
+                                                                        ลักษณะ/ยี่ห้อ :</span>&nbsp;<span
+                                                                        style='color:black;'>{{ $list->equipment->equipment_name }}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <span style='color:black;font-weight:bold;'>&nbsp;
+                                                                        รหัสครุภัณฑ์/เลขทะเบียน :</span>&nbsp;<span
+                                                                        style='color:black;'>{{ $list->equipment->equipment_code }}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <span style='color:black;font-weight:bold;'>&nbsp;
+                                                                        วันที่แจ้ง :</span>&nbsp;<span
+                                                                        style='color:black;'>{{ \Carbon\Carbon::parse($list->created_at)->format('d/m/Y') }}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <span style='color:black;font-weight:bold;'>&nbsp;
+                                                                        รายละเอียดการซ่อม/ปัญหา :</span>&nbsp;<span
+                                                                        style='color:black;'>{{ $list->repair_detail}}</span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <span style='color:black;font-weight:bold;'>&nbsp;
+                                                                        หมายเหตุ :</span>&nbsp;<span
+                                                                        style='color:black;'>{{ $list->repair_etc}}</span>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="zoom">
+                                                                @foreach (json_decode($list->filenames) as $image)
+                                                                <img id="image"
+                                                                    src="{{ asset('images/repair/' . $image) }}"
+                                                                    style='height:150px; width:170px;' />
+                                                                <!-- The Modal -->
+                                                                @endforeach
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+
+
+
+                                            </div> {{--modal-body--}}
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {{-- /view repair --}}
+
+                                <!-- edit repair -->
+                                <div class="modal fade" id="editRepairModal{{ $list->id }}"
+                                    aria-labelledby="myModalLabel" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+
+                                            <form class="form-horizontal"
+                                                action="{{ route('repair.update',$list->id) }}" method="POST">
+                                                @csrf
+                                                {{ method_field('patch') }}
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close"><span
+                                                            aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title"><i class="fa fa-edit"></i>แก้ไขรายการซ่อม
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
 
 
                                                     <div class="row">
@@ -239,8 +362,8 @@
 
                                                 <div class="modal-footer editCategoriesFooter">
                                                     <button type="button" id="clostEditModal" class="btn btn-default"
-                                                        data-dismiss="modal"> <i
-                                                            class="glyphicon glyphicon-remove-sign"></i>
+                                                        data-dismiss="modal">
+                                                        <i class="glyphicon glyphicon-remove-sign"></i>
                                                         ปิด</button>
 
                                                     <button type="submit" class="btn btn-success" id="editCategoriesBtn"
@@ -248,49 +371,50 @@
                                                             class="glyphicon glyphicon-ok-sign"></i> บันทึก</button>
                                                 </div>
                                                 <!-- /modal-footer -->
-                                        </form>
-                                        <!-- /.form -->
-                                    </div>
-                                    <!-- /modal-content -->
-                                </div>
-                                <!-- /modal-dailog -->
-                            </div>
-                            <!-- /edit repair -->
-
-                            <!-- del repair -->
-                            <div class="modal fade" id="removeRepairModal{{ $list->id }}" aria-labelledby="myModalLabel"
-                                tabindex="-1" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i>
-                                                ยกเลิกรายการซ่อม</h4>
+                                            </form>
+                                            <!-- /.form -->
                                         </div>
-                                        <form action="{{ route('repair.destroy',[$list->id,$list->equipment->id]) }}"
-                                            method="POST">
-                                            @csrf
-                                            {{method_field('delete')}}
-                                            <div class="modal-body">
-                                                <p>คุณแน่ใจว่าจะยกเลิกรายการซ่อม ?</p>
+                                        <!-- /modal-content -->
+                                    </div>
+                                    <!-- /modal-dailog -->
+                                </div>
+                                <!-- /edit repair -->
+
+                                <!-- del repair -->
+                                <div class="modal fade" id="removeRepairModal{{ $list->id }}"
+                                    aria-labelledby="myModalLabel" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title"><i class="glyphicon glyphicon-trash"></i>
+                                                    ยกเลิกรายการซ่อม</h4>
                                             </div>
-                                            <div class="modal-footer removeCategoriesFooter">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal"> <i
-                                                        class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
-                                                <button type="submit" class="btn btn-primary"
-                                                    data-loading-text="Loading...">
-                                                    <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
-                                            </div>
-                                        </form>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal-dialog -->
-                            </div>
-                            <!-- /.modal -->
+                                            <form
+                                                action="{{ route('repair.destroy',[$list->id,$list->equipment->id]) }}"
+                                                method="POST">
+                                                @csrf
+                                                {{method_field('delete')}}
+                                                <div class="modal-body">
+                                                    <p>คุณแน่ใจว่าจะยกเลิกรายการซ่อม ?</p>
+                                                </div>
+                                                <div class="modal-footer removeCategoriesFooter">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        <i class="glyphicon glyphicon-remove-sign"></i> ปิด</button>
+                                                    <button type="submit" class="btn btn-primary"
+                                                        data-loading-text="Loading...">
+                                                        <i class="glyphicon glyphicon-ok-sign"></i> ยืนยัน</button>
+                                                </div>
+                                            </form>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
 
 
-                            @endforeach
-                            @endif
+                                @endforeach
+                                @endif
 
                         </tbody>
 
