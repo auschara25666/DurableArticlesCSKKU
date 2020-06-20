@@ -41,7 +41,7 @@
                         <table class="table table-striped table-bordered" id="myTable" align="center">
                             <thead>
                                 <tr>
-                                    <th>รหัสครุภัณฑ์</th>
+                                    <th >รหัสครุภัณฑ์</th>
                                     <th style='width:10%;'>รูปภาพ</th>
                                     <th>ลักษณะ/ยี่ห้อ</th>
                                     <th>ตำแหน่งที่ตั้ง</th>
@@ -133,8 +133,8 @@
                                                     </div>
 
                                                     <div>
-                                                        <img src="{{ asset('images/equipment/' . $list->equipment_image) }}"
-                                                            style='height:100px; width:100px;'>
+                                                        <center><img src="{{ asset('images/equipment/' . $list->equipment_image) }}"
+                                                            style='height:200px; width:200px;'></center>
                                                     </div>
 
                                                     <div>
@@ -339,8 +339,8 @@
                                                     </div>
 
                                                     <div>
-                                                        <img src="{{ asset('images/equipment/' . $list->equipment_image) }}"
-                                                            style='height:100px; width:100px;'>
+                                                        <center><img src="{{ asset('images/equipment/' . $list->equipment_image) }}"
+                                                            style='height:200px; width:200px;'></center>
                                                     </div>
 
                                                     <div>

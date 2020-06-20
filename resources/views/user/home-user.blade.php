@@ -84,7 +84,7 @@
                                             style='height:200px; width:450px;'></center>
                                 </p>
 
-                                <div class='well form-horizontal'>
+                                <div class='card card-body bg-light'>
                                     <div><label  style="font-size: 16px">หัวข้อ : </label>&nbsp;<label style="font-size: 14px;color: darkblue">{{ $list->news_title }}</label></div>
                                     <div><label  style="font-size: 16px">รายละเอียด : </label>&nbsp;<label style="font-size: 14px;color: darkblue">{{ $list->news_detail }}</label></div>
                                     <div><label  style="font-size: 16px">ผู้ประกาศ : </label>&nbsp;<label style="font-size: 14px;color: darkblue">{{ $list->news_create }}</label></div>

@@ -28,7 +28,7 @@
                                 <!-- <th id="th_css">ลำดับ</th> -->
                                 <th style="width: 20%">ชื่อผู้ยืม</th>
                                 <th>รูปภาพ</th>
-                                <th style="width: 12%">รหัสครุภัณฑ์</th>
+                                <th style="width: 15%">รหัสครุภัณฑ์</th>
                                 <th style="width: 20%">ลักษณะ/ยี่ห้อ</th>
                                 <th style="width: 20%">สถานะการยืม</th>
                                 <th>วัตถุประสงค์</th>
@@ -78,7 +78,7 @@
                                 <td>{{ $list->comment_admin }}</td>
                                 <td>
                                     <a href="#removeRentModal{{ $list->id }}" data-toggle="modal"
-                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ยกเลิกการยืม</a>
+                                        class="btn btn-danger"><i class="fa fa-trash-alt"></i>ยกเลิก</a>
                             </tr>
                             <!-- del repair -->
                             <div class="modal fade" id="removeRentModal{{ $list->id }}" aria-labelledby="myModalLabel"
